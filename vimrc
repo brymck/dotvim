@@ -44,6 +44,10 @@ set novisualbell
 set t_vb=
 set tm=500
 
+" Go to previous/next line with same indentation level
+nnoremap <M-,> k:call search('^'. matchstr(getline(line('.')+1), '\(\s*\)') .'\S', 'b')<CR>^
+nnoremap <M-.> :call search('^'. matchstr(getline(line('.')), '\(\s*\)') .'\S')<CR>^
+
 "------------------------------------------------------------------------------
 " Unicode
 "------------------------------------------------------------------------------
