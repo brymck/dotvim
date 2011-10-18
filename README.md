@@ -4,7 +4,7 @@ My Vim Preferences
 Installation
 ------------
 
-### Linux / Cygwin
+### Linux / Mac OS X / Cygwin
 
     cd ~
     rm -rf .vim

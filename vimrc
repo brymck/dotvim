@@ -72,6 +72,8 @@ map <silent><F2> :PREVCOLOR<CR>
 map <silent><F3> :NEXTCOLOR<CR>
 if has("win32")
   set guifont=Consolas:h10:cANSI
+else
+  set guifont=Monaco:h14
 endif
 
 "------------------------------------------------------------------------------
@@ -95,7 +97,7 @@ endif
 "------------------------------------------------------------------------------
 " NERDTree
 "------------------------------------------------------------------------------
-nmap <F7> :NERDTreeToggle \| :silent NERDTreeMirror<CR>
+map <Leader>, :NERDTreeToggle<CR>
 
 "------------------------------------------------------------------------------
 " ctags
