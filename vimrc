@@ -67,13 +67,13 @@ endif
 "------------------------------------------------------------------------------
 syntax enable
 set t_Co=256
-colorscheme molokai
+colorscheme candycode
 map <silent><F2> :PREVCOLOR<CR>
 map <silent><F3> :NEXTCOLOR<CR>
 if has("win32")
   set guifont=Consolas:h10:cANSI
 else
-  set guifont=Monaco:h14
+  set guifont=Monaco:h13
 endif
 
 "------------------------------------------------------------------------------
@@ -88,9 +88,12 @@ set noswapfile
 "------------------------------------------------------------------------------
 if has("autocmd")
   if has("unix")
-    au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-    au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-    au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+    let s:uname = system("echo -n \"$(uname)\"")
+    if !v:shell_error && s:uname == "Linux"
+      au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
+      au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+      au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
+    endif
   endif
 endif
 
