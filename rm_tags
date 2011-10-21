@@ -1,2 +1,2 @@
 #!/bin/bash
-rm ~/.vim/bundle/{snipmate,taglist,vim-latex}/doc/tags
+rm ~/.vim/bundle/{cocoa.vim,snipmate,taglist,vim-latex}/doc/tags
