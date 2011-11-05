@@ -1,4 +1,4 @@
 #!/bin/bash
 echo "Updating all submodules..."
 git submodule foreach git pull origin master
-ech "Done!"
+echo "Done!"
