@@ -64,3 +64,6 @@
 [submodule "bundle/cocoa.vim"]
 	path = bundle/cocoa.vim
 	url = git://github.com/msanders/cocoa.vim.git
+[submodule "bundle/v1m"]
+	path = bundle/v1m
+	url = git://github.com/brymck/v1m.git
