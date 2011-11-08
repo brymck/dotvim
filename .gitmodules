@@ -67,3 +67,6 @@
 [submodule "bundle/v1m"]
 	path = bundle/v1m
 	url = git://github.com/brymck/v1m.git
+[submodule "bundle/supertab"]
+	path = bundle/supertab
+	url = git://github.com/ervandew/supertab.git

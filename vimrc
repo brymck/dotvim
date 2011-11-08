@@ -115,3 +115,6 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " Miscellaneous
 "------------------------------------------------------------------------------
 set colorcolumn=80
+
+" SuperTab
+let g:SuperTabDefaultCompletionType = "context"
