@@ -114,6 +114,7 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 "------------------------------------------------------------------------------
 " Miscellaneous
 "------------------------------------------------------------------------------
+" Show red line after 80 characters
 set colorcolumn=80
 
 " SuperTab
