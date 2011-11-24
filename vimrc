@@ -1,7 +1,14 @@
+"------------------------------------------------------------------------------
+" Pathogen
+"------------------------------------------------------------------------------
 call pathogen#infect()
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+"------------------------------------------------------------------------------
+" General
+"------------------------------------------------------------------------------
+" Turn off vi compatibility
 set nocompatible
 source $VIMRUNTIME/mswin.vim
 
@@ -12,6 +19,15 @@ filetype indent on
 " Set to autoread when file is changed from outside
 set autoread
 
+" Enable handling of multiple buffers
+set hidden
+
+" Keep a longer history of commands (defaults to 20)
+set history=1000
+
+" Extended % matching
+runtime macros/matchit.vim
+
 "------------------------------------------------------------------------------
 " Leader commands
 "------------------------------------------------------------------------------
@@ -19,7 +35,7 @@ set autoread
 let mapleader = ","
 
 " Fast editing and updating of .vimrc
-nmap <leader>e :e! ~/.vimrc
+nmap <leader>e :e! ~/.vim/vimrc
 autocmd! bufwritepost vimrc source ~/.vimrc
 
 "------------------------------------------------------------------------------
@@ -36,7 +52,11 @@ set showmatch
 set ruler                    " Show line number
 set nowrap                   " Don't wrap text
 set incsearch                " Search incrementally
+set hlsearch                 " Highlight search results
 set mat=2                    " How many tenths of a second to blink
+
+" Turn off search highlighting if it gets annoying
+nmap <silent> <leader>n :silent :nohlsearch<CR>
 
 " No sound on errors
 set noerrorbells
@@ -110,6 +130,17 @@ map <Leader>, :NERDTreeToggle<CR>
 " Mappings
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+"------------------------------------------------------------------------------
+" Regular expressions
+"------------------------------------------------------------------------------
+" Default searches to very magic (special characters don't need escaping)
+nnoremap / /\v
+nnoremap ? ?\v
+
+" Case-insensitive unless capital letter is included
+set ignorecase
+set smartcase
 
 "------------------------------------------------------------------------------
 " Miscellaneous
