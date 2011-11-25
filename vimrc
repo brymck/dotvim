@@ -55,6 +55,9 @@ set incsearch                " Search incrementally
 set hlsearch                 " Highlight search results
 set mat=2                    " How many tenths of a second to blink
 
+set linebreak                " Break on word barriers
+set showbreak=>>>            " Line break shown as >>>
+
 " Turn off search highlighting if it gets annoying
 nmap <silent> <leader>n :silent :nohlsearch<CR>
 
@@ -137,10 +140,14 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " Default searches to very magic (special characters don't need escaping)
 nnoremap / /\v
 nnoremap ? ?\v
+nnoremap <leader>/ :%s/\v
 
 " Case-insensitive unless capital letter is included
 set ignorecase
 set smartcase
+
+" Notify how many replacements were made
+set report=0
 
 "------------------------------------------------------------------------------
 " Miscellaneous
