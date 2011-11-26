@@ -141,6 +141,7 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 nnoremap / /\v
 nnoremap ? ?\v
 nnoremap <leader>/ :%s/\v
+nnoremap <leader>j :%s/\v[^\x00-\xff]/&/gn<CR>
 
 " Case-insensitive unless capital letter is included
 set ignorecase
