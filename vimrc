@@ -12,7 +12,7 @@ call pathogen#helptags()
 set nocompatible
 source $VIMRUNTIME/mswin.vim
 
-" Enable filetype plugin
+" Enable filetype and indent plugin
 filetype plugin on
 filetype indent on
 
@@ -41,13 +41,12 @@ autocmd! bufwritepost vimrc source ~/.vimrc
 "------------------------------------------------------------------------------
 " Indent
 "------------------------------------------------------------------------------
-set autoindent
-set expandtab
-set smartindent
-set smarttab
-set tabstop=2
-set shiftwidth=2
-set showmatch
+set autoindent               " Automatically indent
+set expandtab                " Use spaces instead of tabs
+set smartindent              " Smartly insert an extra level of indentation
+set softtabstop=2            " Indent two spaces when pressing tab
+set shiftwidth=2             " Indent two spaces
+set showmatch                " Jump to match when found
 
 set ruler                    " Show line number
 set nowrap                   " Don't wrap text
@@ -67,21 +66,22 @@ set visualbell
 set t_vb=
 set tm=500
 
-" Go to previous/next line with same indentation level
-nnoremap <M-,> k:call search('^'. matchstr(getline(line('.')+1), '\(\s*\)') .'\S', 'b')<CR>^
-nnoremap <M-.> :call search('^'. matchstr(getline(line('.')), '\(\s*\)') .'\S')<CR>^
-
 "------------------------------------------------------------------------------
 " Unicode
 "------------------------------------------------------------------------------
+" Use Unicode if multi-byte is available
 if has("multi_byte")
+  " Make sure terminal encoding is set
   if &termencoding == ""
     let &termencoding = &encoding
   endif
+
+  " Use UTF-8, but allow some other common encodings
   set encoding=utf-8
   setglobal fileencoding=utf-8
-  "setglobal bomb
-  set fileencodings=ucs-bom,utf-8,sjis,latin1
+  set fileencodings=utf-8,utf-16,sjis,latin1,ucs-bom
+
+  " Make non-ASCII glyphs double width; necessary for CJK
   set ambiwidth=double
 endif
 
@@ -102,37 +102,24 @@ endif
 "------------------------------------------------------------------------------
 " Files
 "------------------------------------------------------------------------------
-set nobackup
-set nowb
-set noswapfile
+set nobackup                   " Don't create a permanent backup when writing
+set nowritebackup              " Don't make a temporary backup either
+set noswapfile                 " Don't use a swapfile for the buffer
 
-"------------------------------------------------------------------------------
-" Terminal cursor
-"------------------------------------------------------------------------------
-if has("autocmd")
-  if has("unix")
-    let s:uname = system("echo -n \"$(uname)\"")
-    if !v:shell_error && s:uname == "Linux"
-      au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-      au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-      au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-    endif
-  endif
-endif
+" Easily switch between buffers buffers
+nnoremap <leader>b :buffers<CR>:buffer<Space>
 
 "------------------------------------------------------------------------------
 " NERDTree
 "------------------------------------------------------------------------------
-map <Leader>, :NERDTreeToggle<CR>
+map <leader>, :NERDTreeToggle<CR>
 
 "------------------------------------------------------------------------------
-" ctags
+" LaTeX
 "------------------------------------------------------------------------------
-" set tags=tags;/              " Work up to root until tags directory is found
-
-" Mappings
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+set shellslash                 " For Win32
+set grepprg=grep\ -nH\ $*      " Always generate a filename
+let g:tex_flavor='latex'       " Default to LaTeX instead of PlainTeX
 
 "------------------------------------------------------------------------------
 " Regular expressions
@@ -158,3 +145,6 @@ set colorcolumn=80
 
 " SuperTab
 let g:SuperTabDefaultCompletionType = "context"
+
+" Retain different memories of language input method for each mode
+set noimd
