@@ -67,7 +67,7 @@ set t_vb=
 set tm=500
 
 "------------------------------------------------------------------------------
-" Unicode
+" Language
 "------------------------------------------------------------------------------
 " Use Unicode if multi-byte is available
 if has("multi_byte")
@@ -84,6 +84,12 @@ if has("multi_byte")
   " Make non-ASCII glyphs double width; necessary for CJK
   set ambiwidth=double
 endif
+
+" Remap ¥ to \ for command line
+cnoremap ¥ <Bslash>
+
+" Retain input method editor memory for each mode
+set noimd
 
 "------------------------------------------------------------------------------
 " Colors and fonts
@@ -146,5 +152,3 @@ set colorcolumn=80
 " SuperTab
 let g:SuperTabDefaultCompletionType = "context"
 
-" Retain different memories of language input method for each mode
-set noimd

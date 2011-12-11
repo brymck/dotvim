@@ -1,2 +1,5 @@
 #!/bin/bash
 rm ~/.vim/bundle/{cocoa.vim,snipmate,taglist,vim-latex}/doc/tags
+git add .
+git add -u
+git status
