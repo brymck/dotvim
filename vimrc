@@ -131,9 +131,9 @@ let g:tex_flavor='latex'       " Default to LaTeX instead of PlainTeX
 " Regular expressions
 "------------------------------------------------------------------------------
 " Default searches to very magic (special characters don't need escaping)
-nnoremap / /\v
-nnoremap ? ?\v
-nnoremap <leader>/ :%s/\v
+nnoremap / /\v//<Left><Left>
+nnoremap ? ?\v//<Left><Left>
+nnoremap <leader>/ :%s/\v//g<Left><Left><Left>
 nnoremap <leader>j :%s/\v[^\x00-\xff]/&/gn<CR>
 
 " Case-insensitive unless capital letter is included
@@ -149,6 +149,12 @@ set report=0
 " Show red line after 80 characters
 set colorcolumn=80
 
+" Quick remapping for colored column
+nnoremap <leader>c :set colorcolumn=0<Left>
+
 " SuperTab
 let g:SuperTabDefaultCompletionType = "context"
 
+"------------------------------------------------------------------------------
+" Translation
+"------------------------------------------------------------------------------
