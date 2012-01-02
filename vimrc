@@ -131,9 +131,9 @@ let g:tex_flavor='latex'       " Default to LaTeX instead of PlainTeX
 " Regular expressions
 "------------------------------------------------------------------------------
 " Default searches to very magic (special characters don't need escaping)
-nnoremap / /\v//<Left><Left>
-nnoremap ? ?\v//<Left><Left>
-nnoremap <leader>/ :%s/\v//g<Left><Left><Left>
+nnoremap / /\v/<Left>
+nnoremap ? ?\v/<Left>
+nnoremap <leader>/ :%s/\v/g<Left><Left>
 nnoremap <leader>j :%s/\v[^\x00-\xff]/&/gn<CR>
 
 " Case-insensitive unless capital letter is included
