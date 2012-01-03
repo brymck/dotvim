@@ -144,17 +144,28 @@ set smartcase
 set report=0
 
 "------------------------------------------------------------------------------
+" Git
+"------------------------------------------------------------------------------
+" Open the current file on GitHub
+nnoremap <leader>gb :Gbrowse<CR>
+
+" Commit
+nnoremap <leader>gc :Gcommit<CR>i
+
+" Remove untracked content and commit vimrc
+nnoremap <leader>gvc :silent :!cd ~/.vim && ./add<CR>:Gcommit<CR>i
+
+" Bring up status of altered files
+nnoremap <leader>gs :Gstatus<CR>/modified<CR>:nohlsearch<CR>
+
+" Add indicator for current branch in status line
+set statusline=%{fugitive#statusline()}
+
+"------------------------------------------------------------------------------
 " Miscellaneous
 "------------------------------------------------------------------------------
-" Show red line after 80 characters
-set colorcolumn=80
-
 " Quick remapping for colored column
 nnoremap <leader>c :set colorcolumn=0<Left>
 
 " SuperTab
 let g:SuperTabDefaultCompletionType = "context"
-
-"------------------------------------------------------------------------------
-" Translation
-"------------------------------------------------------------------------------

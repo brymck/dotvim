@@ -1,5 +1,5 @@
 #!/bin/bash
-rm ~/.vim/bundle/{cocoa.vim,snipmate,taglist,vim-latex}/doc/tags
+git submodule foreach git clean -f
 git add .
 git add -u
 git status
