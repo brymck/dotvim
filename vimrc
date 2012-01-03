@@ -162,7 +162,7 @@ nnoremap <leader>gh :Git push heroku master<CR>
 nnoremap <leader>gp :Git push origin master<CR>
 
 " Bring up status of altered files
-nnoremap <leader>gs :Gstatus<CR>/modified<CR>:nohlsearch<CR><Esc>
+nnoremap <leader>gs :Gstatus<CR>/\vmodified:<CR>:nohlsearch<CR><Esc>
 
 " Update vimrc
 nnoremap <leader>gvu :!cd ~/.vim && git pull origin master && git submodule foreach git pull origin master<CR>
