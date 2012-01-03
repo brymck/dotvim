@@ -146,17 +146,32 @@ set report=0
 "------------------------------------------------------------------------------
 " Git
 "------------------------------------------------------------------------------
+" Add all files
+nnoremap <leader>ga :Git add -u<CR>
+
 " Open the current file on GitHub
 nnoremap <leader>gb :Gbrowse<CR>
 
 " Commit
 nnoremap <leader>gc :Gcommit<CR>i
 
-" Remove untracked content and commit vimrc
-nnoremap <leader>gvc :silent :!cd ~/.vim && ./add<CR>:Gcommit<CR>i
+" Push to Heroku
+nnoremap <leader>gh :Git push heroku master<CR>
+
+" Push to origin
+nnoremap <leader>gp :Git push origin master<CR>
 
 " Bring up status of altered files
-nnoremap <leader>gs :Gstatus<CR>/modified<CR>:nohlsearch<CR>
+nnoremap <leader>gs :Gstatus<CR>/modified<CR>:nohlsearch<CR><Esc>
+
+" Update vimrc
+nnoremap <leader>gvu :!cd ~/.vim && git pull origin master && git submodule foreach git pull origin master<CR>
+
+" Clean submodules
+nnoremap <leader>gxc :Git submodule foreach git clean -f<CR>
+
+" Update submodules
+nnoremap <leader>gxu :Git submodule foreach git pull origin master<CR>
 
 " Add indicator for current branch in status line
 set statusline=%{fugitive#statusline()}
