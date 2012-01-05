@@ -47,3 +47,10 @@ then
     cd autoload
     mklink pathogen.vim ..\vim-pathogen\autoload\pathogen.vim
     cd ..
+
+Updating
+--------
+
+Within Vim, just type the following and hit Enter:
+
+    ,gvu
