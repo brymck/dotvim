@@ -10,7 +10,6 @@ call pathogen#helptags()
 "------------------------------------------------------------------------------
 " Turn off vi compatibility
 set nocompatible
-source $VIMRUNTIME/mswin.vim
 
 " Enable filetype and indent plugin
 filetype plugin on
