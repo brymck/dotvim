@@ -66,6 +66,10 @@ set visualbell
 set t_vb=
 set tm=500
 
+" Rehighlight text after indentation in visual mode
+vnoremap < <gv
+vnoremap > >gv
+
 "------------------------------------------------------------------------------
 " Language
 "------------------------------------------------------------------------------
@@ -154,6 +158,9 @@ nnoremap <leader>gb :Gblame<CR>
 
 " Commit
 nnoremap <leader>gc :Gcommit<CR>i
+
+" View diff versus working tree
+nnoremap <leader>gd :Gdiff<CR>
 
 " Open the current file on GitHub
 nnoremap <leader>gh :Gbrowse<CR>
