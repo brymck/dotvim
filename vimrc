@@ -153,23 +153,14 @@ set report=0
 " Add all files
 nnoremap <leader>ga :Git add -u<CR>
 
-" Show which user is responsible for the latest commit to a line
-nnoremap <leader>gb :Gblame<CR>
-
-" Commit
-nnoremap <leader>gc :Gcommit<CR>i
-
 " View diff versus working tree
 nnoremap <leader>gd :Gdiff<CR>
 
 " Open the current file on GitHub
 nnoremap <leader>gh :Gbrowse<CR>
 
-" Push to Heroku
-nnoremap <leader>gk :Git push heroku master<CR>
-
-" Push to origin
-nnoremap <leader>gp :Git push origin master<CR>
+" Push
+nnoremap <leader>gp :Git push origin master<Left><Left><Left><Left><Left><Left><Left>
 
 " Bring up status of altered files
 nnoremap <leader>gs :Gstatus<CR>/\vmodified:<CR>:nohlsearch<CR><Esc>
@@ -177,14 +168,8 @@ nnoremap <leader>gs :Gstatus<CR>/\vmodified:<CR>:nohlsearch<CR><Esc>
 " Update vimrc
 nnoremap <leader>gvu :!cd ~/.vim && git pull origin master && git submodule foreach git pull origin master<CR>
 
-" Save current file to disk and add to git
-nnoremap <leader>gw :Gwrite<CR>
-
 " Clean submodules
-nnoremap <leader>gxc :Git submodule foreach git clean -f<CR>
-
-" Update submodules
-nnoremap <leader>gxu :Git submodule foreach git pull origin master<CR>
+nnoremap <leader>gxc :Git submodule foreach git clean -f<CR><CR>
 
 " Add indicator for current branch in status line
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
