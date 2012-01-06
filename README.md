@@ -6,6 +6,8 @@ Installation
 
 ### Linux / Mac OS X / Cygwin
 
+Copy and paste this into a terminal:
+
     cd ~
     rm -rf .vim
     git clone http://github.com/brymck/dotvim.git .vim
@@ -17,7 +19,20 @@ Installation
     mkdir autoload
     cd autoload
     ln -s ../pathogen/autoload/pathogen.vim pathogen.vim
-    cd ..
+
+#### Explanation
+
+The above commands remove any preexisting personal vim configuration, so backup anything
+you might wish to preserve going forward. This repo is then cloned into `~/.vim`, and
+a symbolic link is created between `~/.vimrc` and `~/.vim/vimrc`, which allows you to
+update the repo and have the changes reflected instantly in Vim. Once the repo is cloned,
+all of the submodules -- links to Vim plugins -- are initialized and updated. A symbolic
+link is created for [pathogen](http://www.vim.org/scripts/script.php?script_id=2332),
+which can then load all of the plugins found in `~/.vim/bundle`.
+
+The reason for all the symbolic links and git submodules is simple: from now on,
+you only have to update this repo and its submodules to have all changes reflected
+in Vim. And you can do this _within Vim_ by typing `,u`!
 
 ### Windows
 
@@ -46,9 +61,10 @@ then
     mkdir autoload
     cd autoload
     mklink pathogen.vim ..\pathogen\autoload\pathogen.vim
-    cd ..
 
 Updating
 --------
 
-Within Vim, just type `,u` and hit Enter.
+Within Vim, just type `,u`.
+
+Easy enough, yes?
