@@ -111,7 +111,8 @@ This configuration utilizes the following plugins:
   gvim-only colorschemes work transparently in terminal vim Text Objects based
   on Indentation Level
 * [indent-object](http://www.vim.org/scripts/script.php?script_id=3037)
-  ([Michael Smith](http://www.vim.org/account/profile.php?user_id=19478)) - 
+  ([Michael Smith](http://www.vim.org/account/profile.php?user_id=19478)) -
+  Text Objects based on Indentation Level
 * [Javascript-Indent](http://www.vim.org/scripts/script.php?script_id=3081)
   ([Preston Koprivica](http://www.vim.org/account/profile.php?user_id=19766)) -
   Javascript indenter (HTML indent is included)
