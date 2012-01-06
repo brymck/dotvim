@@ -7,9 +7,6 @@
 [submodule "bundle/color_sampler_pack"]
 	path = bundle/color_sampler_pack
 	url = git://github.com/vim-scripts/Color-Sampler-Pack.git
-[submodule "bundle/command_t"]
-	path = bundle/command_t
-	url = git://github.com/wincent/Command-T.git
 [submodule "bundle/csapprox"]
 	path = bundle/csapprox
 	url = git://github.com/godlygeek/csapprox.git
@@ -33,7 +30,7 @@
 	url = git://github.com/mineiro/vim-latex.git
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
-	url = https://github.com/scrooloose/nerdcommenter.git
+	url = git://github.com/scrooloose/nerdcommenter.git
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
@@ -57,7 +54,7 @@
 	url = git://github.com/ervandew/supertab.git
 [submodule "bundle/surround"]
 	path = bundle/surround
-	url = https://github.com/tpope/vim-surround.git
+	url = git://github.com/tpope/vim-surround.git
 [submodule "bundle/unimpaired"]
 	path = bundle/unimpaired
 	url = git://github.com/tpope/vim-unimpaired.git
