@@ -164,9 +164,6 @@ nnoremap <leader>gp :Git push origin master<Left><Left><Left><Left><Left><Left><
 " Bring up status of altered files
 nnoremap <leader>gs :Gstatus<CR>/\vmodified:<CR>:nohlsearch<CR><Esc>
 
-" Update vimrc
-nnoremap <leader>gvu :!cd ~/.vim && git pull origin master && git submodule foreach git pull origin master<CR>
-
 " Clean submodules
 nnoremap <leader>gxc :Git submodule foreach git clean -f<CR><CR>
 
@@ -192,3 +189,6 @@ nnoremap <M-D-Left> :tabprevious<CR>
 
 " Spellcheck
 nnoremap <leader>sc :! aspell -c %<CR>
+
+" Update vimrc
+nnoremap <leader>u :!cd ~/.vim && git pull origin master && git submodule foreach git pull origin master<CR>

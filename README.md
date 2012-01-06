@@ -51,6 +51,4 @@ then
 Updating
 --------
 
-Within Vim, just type the following and hit Enter:
-
-    ,gvu
+Within Vim, just type `,gvu` Enter:
