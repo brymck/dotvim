@@ -70,6 +70,28 @@ vnoremap < <gv
 vnoremap > >gv
 
 "------------------------------------------------------------------------------
+" Tabularize
+"------------------------------------------------------------------------------
+" Shortcuts for aligning tables with common delimiters
+if exists(":Tabularize")
+  " Vertical bars
+  nnoremap <leader>t<Bar> :Tabularize /\|<CR>
+  vnoremap <leader>t<Bar> :Tabularize /\|<CR>
+
+  " Equal signs
+  nnoremap <leader>t= :Tabularize /=<CR>
+  vnoremap <leader>t= :Tabularize /=<CR>
+
+  " Colons
+  nnoremap <leader>t: :Tabularize /:\zs/l0l1<CR>
+  vnoremap <leader>t: :Tabularize /:\zs/l0l1<CR>
+
+  " Hashrockets
+  nnoremap <leader>t> :Tabularize /=><CR>
+  vnoremap <leader>t> :Tabularize /=><CR>
+endif
+
+"------------------------------------------------------------------------------
 " Language
 "------------------------------------------------------------------------------
 " Use Unicode if multi-byte is available
