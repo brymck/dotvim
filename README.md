@@ -119,21 +119,25 @@ This configuration utilizes the following plugins:
 * [LaTeX-Suite](http://www.vim.org/scripts/script.php?script_id=475) ([Srinath
   Avadhanula](http://www.vim.org/account/profile.php?user_id=247)) - A rich set
   of tools for editing LaTeX
-* [snipMate](http://www.vim.org/scripts/script.php?script_id=2540) ([Michael
-  Sanders](http://www.vim.org/account/profile.php?user_id=16544)) -
-  TextMate-style snippets for Vim
-* [taglist](http://www.vim.org/scripts/script.php?script_id=273) ([Yegappan
-  Lakshmanan](http://www.vim.org/account/profile.php?user_id=244)) - Source
-  code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
+* [Mini Buffer Explorer](https://github.com/fholgado/minibufexpl.vim) ([Bindu
+  Wavell](http://www.vim.org/account/profile.php?user_id=385) and [Federico
+  Holgado](https://github.com/fholgado)) - Elegant buffer explorer - takes very
+  little screen space
 * [RDoc](http://www.vim.org/scripts/script.php?script_id=2878) ([Hallison
   Batista](http://www.vim.org/account/profile.php?user_id=12644)) - Syntax
   highlight for Ruby Documentation
 * [ScrollColors](http://www.vim.org/scripts/script.php?script_id=1488) ([Yakov
   Lerner](http://www.vim.org/account/profile.php?user_id=2342)) - Colorsheme
   Scroller, Chooser, and Browser
+* [snipMate](http://www.vim.org/scripts/script.php?script_id=2540) ([Michael
+  Sanders](http://www.vim.org/account/profile.php?user_id=16544)) -
+  TextMate-style snippets for Vim
 * [SuperTab](http://www.vim.org/scripts/script.php?script_id=1643) ([Eric Van
   Dewoestine](http://www.vim.org/account/profile.php?user_id=6016)) - Do all
   your insert-mode completion with Tab.
+* [taglist](http://www.vim.org/scripts/script.php?script_id=273) ([Yegappan
+  Lakshmanan](http://www.vim.org/account/profile.php?user_id=244)) - Source
+  code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
 * [v1m](https://github.com/brymck/v1m) (Me) - Some very minor functions for use
   in translating English to and from Japanese
 * [tabular](http://www.vim.org/scripts/script.php?script_id=3464) ([Josh

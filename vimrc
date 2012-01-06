@@ -69,8 +69,12 @@ set tm=500
 vnoremap < <gv
 vnoremap > >gv
 
+" Rapidly toggle invisible characters, using same symbols as TextMate
+nnoremap <leader>l :set list!<CR>
+set listchars=tab:▸\ ,eol:¬
+
 "------------------------------------------------------------------------------
-" Tabularize
+" tabular
 "------------------------------------------------------------------------------
 " Shortcuts for aligning tables with common delimiters
 if exists(":Tabularize")
@@ -215,5 +219,5 @@ nnoremap <M-D-Left> :tabprevious<CR>
 " Spellcheck
 nnoremap <leader>sc :! aspell -c %<CR>
 
-" Update vimrc
+" Update configuration from GitHub repo
 nnoremap <leader>u :!cd ~/.vim && git pull origin master && git submodule foreach git pull origin master<CR>
