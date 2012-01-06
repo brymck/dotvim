@@ -164,6 +164,9 @@ nnoremap <leader>gp :Git push origin master<Left><Left><Left><Left><Left><Left><
 " Bring up status of altered files
 nnoremap <leader>gs :Gstatus<CR>/\vmodified:<CR>:nohlsearch<CR><Esc>
 
+" Write current file and add to git repository
+nnoremap <leader>gw :Gwrite<CR>
+
 " Clean submodules
 nnoremap <leader>gxc :Git submodule foreach git clean -f<CR><CR>
 
