@@ -189,3 +189,6 @@ let g:SuperTabDefaultCompletionType = "context"
 let macvim_skip_cmd_opt_movement = 1
 nnoremap <M-D-Right> :tabnext<CR>
 nnoremap <M-D-Left> :tabprevious<CR>
+
+" Spellcheck
+nnoremap <leader>sc :! aspell -c %<CR>

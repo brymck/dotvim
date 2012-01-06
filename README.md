@@ -16,7 +16,7 @@ Installation
     git submodule update
     mkdir autoload
     cd autoload
-    ln -s ../vim-pathogen/autoload/pathogen.vim pathogen.vim
+    ln -s ../pathogen/autoload/pathogen.vim pathogen.vim
     cd ..
 
 ### Windows
@@ -45,7 +45,7 @@ then
     
     mkdir autoload
     cd autoload
-    mklink pathogen.vim ..\vim-pathogen\autoload\pathogen.vim
+    mklink pathogen.vim ..\pathogen\autoload\pathogen.vim
     cd ..
 
 Updating
