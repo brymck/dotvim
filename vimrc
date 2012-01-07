@@ -31,7 +31,7 @@ runtime macros/matchit.vim
 " Leader commands
 "------------------------------------------------------------------------------
 " Set leader to comma (instead of backslash)
-let mapleader = ","
+let mapleader=","
 
 " Fast editing and updating of .vimrc
 nmap <leader>e :e! ~/.vim/vimrc
@@ -55,6 +55,9 @@ set mat=2                    " How many tenths of a second to blink
 
 set linebreak                " Break on word barriers
 set showbreak=>>>            " Line break shown as >>>
+
+set textwidth=0              " No maximum width of text for insertion
+set wrapmargin=0             " Turn off automatic insertion of newlines
 
 " Turn off search highlighting if it gets annoying
 nmap <silent> <leader>n :silent :nohlsearch<CR>
@@ -173,7 +176,7 @@ set smartcase
 set report=0
 
 "------------------------------------------------------------------------------
-" Git
+" Fugitive
 "------------------------------------------------------------------------------
 " Add all files
 nnoremap <leader>ga :Git add -u<CR>
@@ -188,7 +191,7 @@ nnoremap <leader>gh :Gbrowse<CR>
 nnoremap <leader>gp :Git push origin master<Left><Left><Left><Left><Left><Left><Left>
 
 " Bring up status of altered files
-nnoremap <leader>gs :Gstatus<CR>/\vmodified:<CR>:nohlsearch<CR><Esc>
+nnoremap <leader>gs :Gstatus<CR>/\vmodified:/e<CR>:nohlsearch<CR><Esc>
 
 " Write current file and add to git repository
 nnoremap <leader>gw :Gwrite<CR>
@@ -227,3 +230,7 @@ nnoremap <leader>sc :! aspell -c %<CR>
 
 " Update configuration from GitHub repo
 nnoremap <leader>u :!cd ~/.vim && git pull origin master && git submodule foreach git pull origin master<CR>
+
+" Add new plugin
+nnoremap <leader>x :!cd ~/.vim && git submodule add git://github.com/
+nnoremap <leader>xu :!cd ~/.vim && git submodule init && git submodule update<CR><CR>

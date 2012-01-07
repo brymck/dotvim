@@ -67,3 +67,6 @@
 [submodule "bundle/minibufexpl"]
 	path = bundle/minibufexpl
 	url = https://github.com/fholgado/minibufexpl.vim
+[submodule "bundle/conque"]
+	path = bundle/conque
+	url = git://github.com/rson/vim-conque
