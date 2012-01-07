@@ -34,7 +34,7 @@ runtime macros/matchit.vim
 let mapleader=","
 
 " Fast editing and updating of .vimrc
-nmap <leader>e :e! ~/.vim/vimrc
+nmap <leader>e :e! ~/.vim/vimrc<CR>
 autocmd! bufwritepost vimrc source ~/.vimrc
 
 "------------------------------------------------------------------------------
@@ -105,7 +105,7 @@ endif
 if has("multi_byte")
   " Make sure terminal encoding is set
   if &termencoding == ""
-    let &termencoding = &encoding
+    let &termencoding=&encoding
   endif
 
   " Use UTF-8, but allow some other common encodings
@@ -212,16 +212,16 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 nnoremap <leader>c :set colorcolumn=0<Left>
 
 " SuperTab
-let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabDefaultCompletionType="context"
 
 " Mini Buffer Explorer
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
+let g:miniBufExplMapWindowNavVim=1
+let g:miniBufExplMapWindowNavArrows=1
+let g:miniBufExplMapCTabSwitchBufs=1
+let g:miniBufExplModSelTarget=1
 
 " Map MacVim keybindings for changing tabs to same as Chrome
-let macvim_skip_cmd_opt_movement = 1
+let macvim_skip_cmd_opt_movement=1
 nnoremap <M-D-Right> :tabnext<CR>
 nnoremap <M-D-Left> :tabprevious<CR>
 
