@@ -211,6 +211,12 @@ nnoremap <leader>c :set colorcolumn=0<Left>
 " SuperTab
 let g:SuperTabDefaultCompletionType = "context"
 
+" Mini Buffer Explorer
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+
 " Map MacVim keybindings for changing tabs to same as Chrome
 let macvim_skip_cmd_opt_movement = 1
 nnoremap <M-D-Right> :tabnext<CR>
