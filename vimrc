@@ -8,30 +8,24 @@ call pathogen#helptags()
 "------------------------------------------------------------------------------
 " General
 "------------------------------------------------------------------------------
-" Turn off vi compatibility
-set nocompatible
+set nocompatible               " Turn off vi compatibility
+filetype plugin on             " Enable filetype plugin
+filetype indent on             " Enable indent pluing
 
-" Enable filetype and indent plugin
-filetype plugin on
-filetype indent on
+set autoread                   " Set to autoread when file is changed
+set hidden                     " Enable handling of multiple buffers
+set history=1000               " Keep a longer history of commands
+runtime macros/matchit.vim     " Extended % matching
 
-" Set to autoread when file is changed from outside
-set autoread
-
-" Enable handling of multiple buffers
-set hidden
-
-" Keep a longer history of commands (defaults to 20)
-set history=1000
-
-" Extended % matching
-runtime macros/matchit.vim
+set noerrorbells               " No bells for error messages
+set visualbell                 " Use visual bell instead of beeping
+set vb t_vb=                   " No beep or flash
+set timeoutlen=500             " Wait 0.5 s for a key sequence to complete
 
 "------------------------------------------------------------------------------
 " Leader commands
 "------------------------------------------------------------------------------
-" Set leader to comma (instead of backslash)
-let mapleader=","
+let mapleader=","              " Set leader to comma
 
 " Fast editing and updating of .vimrc
 nmap <leader>e :e! ~/.vim/vimrc<CR>
@@ -62,22 +56,15 @@ set wrapmargin=0             " Turn off automatic insertion of newlines
 " Turn off search highlighting if it gets annoying
 nmap <silent> <leader>n :silent :nohlsearch<CR>
 
-" No sound on errors
-set noerrorbells
-set visualbell
-set t_vb=
-set tm=500
-
 " Rehighlight text after indentation in visual mode
 vnoremap < <gv
 vnoremap > >gv
 
 " Rapidly toggle invisible characters, using same symbols as TextMate
 nnoremap <leader>l :set list!<CR>
-set listchars=tab:▸\ ,eol:¬
 
 "------------------------------------------------------------------------------
-" tabular
+" Tabular
 "------------------------------------------------------------------------------
 " Shortcuts for aligning tables with common delimiters
 if exists(":Tabularize")
@@ -113,24 +100,20 @@ if has("multi_byte")
   setglobal fileencoding=utf-8
   set fileencodings=utf-8,utf-16,sjis,latin1,ucs-bom
 
-  " Make non-ASCII glyphs double width; necessary for CJK
-  set ambiwidth=double
+  set ambiwidth=double         " Make non-ASCII glyphs double-width for CJK
 endif
 
-" Remap ¥ to \ for command line
-cnoremap ¥ <Bslash>
-
-" Retain input method editor memory for each mode
-set noimd
+cnoremap ¥ <Bslash>            " Remap ¥ to \ for command line
+set noimd                      " Retain input method editor memory for modes
 
 "------------------------------------------------------------------------------
 " Colors and fonts
 "------------------------------------------------------------------------------
-syntax enable
-set t_Co=256
-colorscheme candycode
-map <silent><F2> :PREVCOLOR<CR>
-map <silent><F3> :NEXTCOLOR<CR>
+syntax enable                  " Enable syntax highlighting
+set t_Co=256                   " Default terminal colors to 256
+colorscheme candycode          " Use candycode scheme by default
+
+" Set default fonts for different platforms
 if has("win32")
   set guifont=Consolas:h10:cANSI
 else
@@ -144,7 +127,7 @@ set nobackup                   " Don't create a permanent backup when writing
 set nowritebackup              " Don't make a temporary backup either
 set noswapfile                 " Don't use a swapfile for the buffer
 
-" Easily switch between buffers buffers
+" Easily switch between buffers
 nnoremap <leader>b :buffers<CR>:buffer<Space>
 
 "------------------------------------------------------------------------------
@@ -172,21 +155,11 @@ nnoremap <leader>j :%s/\v[^\x00-\xff]/&/gn<CR>
 set ignorecase
 set smartcase
 
-" Notify how many replacements were made
-set report=0
+set report=0                   " Notify how many replacements were made
 
 "------------------------------------------------------------------------------
 " Fugitive
 "------------------------------------------------------------------------------
-" Add all files
-nnoremap <leader>ga :Git add -u<CR>
-
-" View diff versus working tree
-nnoremap <leader>gd :Gdiff<CR>
-
-" Open the current file on GitHub
-nnoremap <leader>gh :Gbrowse<CR>
-
 " Push
 nnoremap <leader>gp :Git push origin master<Left><Left><Left><Left><Left><Left><Left>
 
@@ -214,7 +187,7 @@ nnoremap <leader>c :set colorcolumn=0<Left>
 " SuperTab
 let g:SuperTabDefaultCompletionType="context"
 
-" Mini Buffer Explorer
+" Mini Buffer Explorer recommended defaults
 let g:miniBufExplMapWindowNavVim=1
 let g:miniBufExplMapWindowNavArrows=1
 let g:miniBufExplMapCTabSwitchBufs=1
