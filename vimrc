@@ -9,6 +9,7 @@ call pathogen#helptags()
 " General
 "------------------------------------------------------------------------------
 set nocompatible               " Turn off vi compatibility
+source $VIMRUNTIME/mswin.vim   " Some basic MS keybindings
 filetype plugin on             " Enable filetype plugin
 filetype indent on             " Enable indent pluing
 
@@ -188,6 +189,12 @@ nnoremap <leader>1a :call FullToHalfAll()<CR>
 nnoremap <leader>1f :call FullToHalf()<CR>
 nnoremap <leader>1s :call ReopenAsShiftJIS()<CR>
 nnoremap <leader>1h :call HighlightSimplyTerms()<CR>
+
+" Keybindings for AppleScripts
+nnoremap <leader>1mp :call ImportTagsPowerPoint()<CR><CR>
+nnoremap <leader>1mw :call ImportTagsWord()<CR><CR>
+nnoremap <leader>1xp :call ExtractTagsPowerPoint()<CR><CR>
+nnoremap <leader>1xw :call ExtractTagsWord()<CR><CR>
 
 "------------------------------------------------------------------------------
 " Miscellaneous
