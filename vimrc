@@ -53,6 +53,8 @@ set showbreak=>>>            " Line break shown as >>>
 set textwidth=0              " No maximum width of text for insertion
 set wrapmargin=0             " Turn off automatic insertion of newlines
 
+set nojoinspaces             " Don't add two spaces between joined sentences
+
 " Turn off search highlighting if it gets annoying
 nmap <silent> <leader>n :silent :nohlsearch<CR>
 
@@ -177,6 +179,14 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 " Auto-clean fugitive buffers
 autocmd BufReadPost fugitive://* set bufhidden=delete
+
+"------------------------------------------------------------------------------
+" v1m
+"------------------------------------------------------------------------------
+nnoremap <leader>1a :call FullToHalfAll()<CR>
+nnoremap <leader>1f :call FullToHalf()<CR>
+nnoremap <leader>1s :call ReopenAsShiftJIS()<CR>
+nnoremap <leader>1h :call HighlightSimplyTerms()<CR>
 
 "------------------------------------------------------------------------------
 " Miscellaneous
