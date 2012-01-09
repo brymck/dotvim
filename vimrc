@@ -107,7 +107,9 @@ if has("multi_byte")
   set ambiwidth=double         " Make non-ASCII glyphs double-width for CJK
 endif
 
-cnoremap ¥ <Bslash>            " Remap ¥ to \ for command line
+" Remap ¥ to \ for command line
+cnoremap ¥ <Bslash>
+
 set noimd                      " Retain input method editor memory for modes
 
 "------------------------------------------------------------------------------
