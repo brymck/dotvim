@@ -56,7 +56,8 @@ set wrapmargin=0             " Turn off automatic insertion of newlines
 set nojoinspaces             " Don't add two spaces between joined sentences
 
 " Turn off search highlighting if it gets annoying
-nmap <silent> <leader>n :silent :nohlsearch<CR>
+nnoremap <leader>n :nohlsearch<CR>
+nnoremap <leader>w :set wrap!<CR>
 
 " Rehighlight text after indentation in visual mode
 vnoremap < <gv
