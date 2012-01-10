@@ -13,6 +13,15 @@ source $VIMRUNTIME/mswin.vim   " Some basic MS keybindings
 filetype plugin on             " Enable filetype plugin
 filetype indent on             " Enable indent pluing
 
+" Get cross-platform runtime and paths
+if has("win32")
+  let vimfiles_path="~/vimfiles/"
+  let vimrc_path="~/_vimrc"
+else
+  let vimfiles_path="~/.vim/"
+  let vimrc_path="~/.vimrc"
+endif
+
 set autoread                   " Set to autoread when file is changed
 set hidden                     " Enable handling of multiple buffers
 set history=1000               " Keep a longer history of commands
@@ -29,8 +38,8 @@ set timeoutlen=500             " Wait 0.5 s for a key sequence to complete
 let mapleader=","              " Set leader to comma
 
 " Fast editing and updating of .vimrc
-nmap <leader>e :e! ~/.vim/vimrc<CR>
-autocmd! bufwritepost vimrc source ~/.vimrc
+execute "nnoremap <leader>e :e! " . vimfiles_path . "vimrc<CR>"
+execute "autocmd! bufwritepost vimrc source " . vimrc_path
 
 "------------------------------------------------------------------------------
 " Indent
@@ -216,8 +225,8 @@ nnoremap <M-D-Left> :tabprevious<CR>
 nnoremap <leader>sc :! aspell -c %<CR>
 
 " Update configuration from GitHub repo
-nnoremap <leader>u :!cd ~/.vim && git pull origin master && git submodule foreach git pull origin master<CR>
+execute "nnoremap <leader>u :!cd " . vimfiles_path . " && git pull origin master && git submodule foreach git pull origin master<CR>"
 
 " Add new plugin
-nnoremap <leader>x :!cd ~/.vim && git submodule add git://github.com/
-nnoremap <leader>xu :!cd ~/.vim && git submodule init && git submodule update<CR><CR>
+execute "nnoremap <leader>x :!cd " . vimfiles_path . " && git submodule add git://github.com/"
+execute "nnoremap <leader>xu :!cd " . vimfiles_path . " && git submodule init && git submodule update<CR><CR>"
