@@ -207,10 +207,10 @@ nnoremap <leader>c :set colorcolumn=0<Left>
 " SuperTab
 let g:SuperTabDefaultCompletionType="context"
 
-" Map MacVim keybindings for changing tabs to same as Chrome
+" Map MacVim keybindings for changing tabs to same as Mac Terminal
 let macvim_skip_cmd_opt_movement=1
-nnoremap <M-D-Right> :tabnext<CR>
-nnoremap <M-D-Left> :tabprevious<CR>
+nnoremap <S-D-Right> :tabnext<CR>
+nnoremap <S-D-Left> :tabprevious<CR>
 
 " Spellcheck
 nnoremap <leader>sc :! aspell -c %<CR>
