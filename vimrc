@@ -146,6 +146,12 @@ set noswapfile                 " Don't use a swapfile for the buffer
 nnoremap <leader>b :buffers<CR>:buffer<Space>
 
 "------------------------------------------------------------------------------
+" konjac
+"------------------------------------------------------------------------------
+nnoremap <leader>ki :!konjac import %<CR>
+nnoremap <leader>kt :!konjac translate % from 
+
+"------------------------------------------------------------------------------
 " NERDTree
 "------------------------------------------------------------------------------
 map <leader>, :NERDTreeToggle<CR>
