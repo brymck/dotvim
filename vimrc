@@ -199,7 +199,7 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 nnoremap <leader>1a :call FullToHalfAll()<CR>
 nnoremap <leader>1f :call FullToHalf()<CR>
 nnoremap <leader>1s :call ReopenAsShiftJIS()<CR>
-nnoremap <leader>1h :call HighlightSimplyTerms()<CR>
+nnoremap <leader>1h :call HighlightTerms()<CR>
 
 " Keybindings for AppleScripts
 nnoremap <leader>1mp :call ImportTagsPowerPoint()<CR><CR>
