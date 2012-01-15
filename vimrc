@@ -38,7 +38,7 @@ set timeoutlen=500             " Wait 0.5 s for a key sequence to complete
 let mapleader=","              " Set leader to comma
 
 " Fast editing and updating of .vimrc
-execute "nnoremap <leader>e :e! " . vimfiles_path . "vimrc<CR>"
+execute "nnoremap <leader>v :e! " . vimfiles_path . "vimrc<CR>"
 execute "autocmd! bufwritepost vimrc source " . vimrc_path
 
 "------------------------------------------------------------------------------
@@ -149,7 +149,56 @@ nnoremap <leader>b :buffers<CR>:buffer<Space>
 " konjac
 "------------------------------------------------------------------------------
 nnoremap <leader>ki :!konjac import %<CR>
-nnoremap <leader>kt :!konjac translate % from 
+nnoremap <leader>kt :!konjac translate % -f
+
+function! SaveKonjac(from_lang, to_lang)
+  " Move to top and copy first line
+  normal gg2l"ay$
+
+  " Copy translation
+  normal j0"by$
+  set nowarn
+  silent exe "normal! :!konjac add -o \"\<C-R>a\" -f " . a:from_lang . " -r \"\<C-R>b\" -t " . a:to_lang . "\<CR>"
+  
+  q
+endfunction
+
+function! OpenKonjac(from_lang, to_lang, single, visual)
+  " Open the temp file in a horizontal split
+  below 12sp ~/.konjac/sp.konjac
+
+  " Clear file
+  normal ggdG
+  
+  " Paste register
+  normal "ap
+
+  exe "normal \"aY0i> \<Esc>"
+  exe "normal :r !konjac translate \"\<C-R>a\" -f " . a:from_lang . " -t " . a:to_lang . " -w\<CR>"
+  normal 0i
+
+  if a:single
+    if a:visual
+      exe "nnoremap \<buffer> q :call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>`ad`bx\"bP"
+    else
+      exe "nnoremap \<buffer> q :call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>gvx\"bP"
+    endif
+  else
+    exe "nnoremap \<buffer> q :call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>:%s/\\\<\<C-R>a\\>/\<C-R>b/gce\<CR>"
+  endif
+endfunction
+
+" Translate a single word or phrase
+nnoremap <leader>se "ayemaemb`a:call OpenKonjac("ja", "en", 1, 0)<CR>
+vnoremap <leader>se "ayma:call OpenKonjac("ja", "en", 1, 1)<CR>
+nnoremap <leader>sj "ayemaemb`a:call OpenKonjac("en", "ja", 1, 0)<CR>
+vnoremap <leader>sj "ayma:call OpenKonjac("en", "ja", 1, 1)<CR>
+
+" Translate word or phrase for entire document
+nnoremap <leader>e "ayema:call OpenKonjac("ja", "en", 0, 0)<CR>
+vnoremap <leader>e "ayma:call OpenKonjac("ja", "en", 0, 1)<CR>
+nnoremap <leader>j "ayema:call OpenKonjac("en", "ja", 0, 0)<CR>
+vnoremap <leader>j "ayma:call OpenKonjac("en", "ja", 0, 1)<CR>
 
 "------------------------------------------------------------------------------
 " NERDTree
@@ -170,7 +219,6 @@ let g:tex_flavor='latex'       " Default to LaTeX instead of PlainTeX
 nnoremap / /\v/<Left>
 nnoremap ? ?\v/<Left>
 nnoremap <leader>/ :%s/\v/g<Left><Left>
-nnoremap <leader>j :%s/\v[^\x00-\xff]/&/gn<CR>
 
 " Copy current word or selection and replace for the entire document
 nnoremap <leader>s yiw:%s/\<<C-r>"\>//gc<Left><Left><Left>
