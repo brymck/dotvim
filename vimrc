@@ -172,6 +172,14 @@ nnoremap ? ?\v/<Left>
 nnoremap <leader>/ :%s/\v/g<Left><Left>
 nnoremap <leader>j :%s/\v[^\x00-\xff]/&/gn<CR>
 
+" Copy current word or selection and replace for the entire document
+nnoremap <leader>s yiw:%s/\<<C-r>"\>//gc<Left><Left><Left>
+vnoremap <leader>s y:%s/\<<C-r>"\>//gc<Left><Left><Left>
+
+" Count number of occurrences for the current or selected word
+nnoremap <leader>m yiw:%s/\<<C-r>"\>//gn<CR><C-O>
+vnoremap <leader>m y:%s/\<<C-r>"\>//gn<CR><C-O>
+
 " Case-insensitive unless capital letter is included
 set ignorecase
 set smartcase
