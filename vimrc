@@ -197,6 +197,10 @@ vnoremap <leader>se "ayma:call OpenKonjac("ja", "en", 1, 1)<CR>
 nnoremap <leader>sj "ayemaemb`a:call OpenKonjac("en", "ja", 1, 0)<CR>
 vnoremap <leader>sj "ayma:call OpenKonjac("en", "ja", 1, 1)<CR>
 
+" Translate a line
+nnoremap <leader>E 0"ay$ma$mb`a:call OpenKonjac("ja", "en", 1, 0)<CR>
+nnoremap <leader>E 0"ay$ma$mb`a:call OpenKonjac("en", "ja", 1, 0)<CR>
+
 " Translate word or phrase for entire document
 nnoremap <leader>e "ayema:call OpenKonjac("ja", "en", 0, 0)<CR>
 vnoremap <leader>e "ayma:call OpenKonjac("ja", "en", 0, 1)<CR>
