@@ -184,7 +184,7 @@ function! OpenKonjac(from_lang, to_lang, single, visual)
       exe "nnoremap \<buffer> q :call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>gvx\"bP"
     endif
   else
-    exe "nnoremap \<buffer> q :call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>:%s/\\V\<C-R>a/\<C-R>b/gce\<CR>"
+    exe "nnoremap \<buffer> q :call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>:%s/\\V\\(> \\.\\*\\)\\@<!\<C-R>a/\<C-R>b/gce\<CR>"
   endif
 endfunction
 
