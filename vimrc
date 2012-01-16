@@ -180,14 +180,14 @@ function! OpenKonjac(from_lang, to_lang, single, visual)
   if a:single
     if a:visual
       exe "nnoremap \<buffer> \<C-w> :call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>`ade\"bP"
-      exe "inoremap \<buffer> \<C-w> :call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>`ade\"bP"
+      exe "inoremap \<buffer> \<C-w> \<Esc>:call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>`ade\"bP"
     else
       exe "nnoremap \<buffer> \<C-w> :call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>gvx\"bP"
-      exe "inoremap \<buffer> \<C-w> :call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>gvx\"bP"
+      exe "inoremap \<buffer> \<C-w> \<Esc>:call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>gvx\"bP"
     endif
   else
     exe "nnoremap \<buffer> \<C-w> :call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>:%s/\\V\\(> \\.\\*\\)\\@<!\<C-R>a/\<C-R>b/gce\<CR>"
-    exe "inoremap \<buffer> \<C-w> :call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>:%s/\\V\\(> \\.\\*\\)\\@<!\<C-R>a/\<C-R>b/gce\<CR>"
+    exe "inoremap \<buffer> \<C-w> \<Esc>:call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>:%s/\\V\\(> \\.\\*\\)\\@<!\<C-R>a/\<C-R>b/gce\<CR>"
   endif
 endfunction
 
