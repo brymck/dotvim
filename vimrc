@@ -190,8 +190,8 @@ function! OpenKonjac(from_lang, to_lang, single, visual)
     exe "inoremap \<buffer> \<C-w> \<Esc>:call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>:%s/\\V\\(> \\.\\*\\)\\@<!\<C-R>a/\<C-R>b/gce\<CR>"
   endif
 
-  exe "nnoremap \<buffer> \<C-q> :q"
-  exe "inoremap \<buffer> \<C-q> \<Esc>:q"
+  exe "nnoremap \<buffer> \<C-q> :q<CR>"
+  exe "inoremap \<buffer> \<C-q> \<Esc>:q<CR>"
 endfunction
 
 " Translate a single word or phrase
