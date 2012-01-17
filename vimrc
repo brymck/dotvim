@@ -174,8 +174,8 @@ function! OpenKonjac(from_lang, to_lang, single, visual)
   normal "ap
 
   exe "normal \"aY0i> \<Esc>"
-  exe "normal :r !konjac translate \"\<C-R>a\" -f " . a:from_lang . " -t " . a:to_lang . " -w\<CR>"
-  normal 0i
+  exe "normal :r !konjac suggest \"\<C-R>a\" -f " . a:from_lang . " -t " . a:to_lang . "\<CR>"
+  exe "normal ggo\<Esc>majy$'apdF x0df "
 
   if a:single
     if a:visual
@@ -189,6 +189,9 @@ function! OpenKonjac(from_lang, to_lang, single, visual)
     exe "nnoremap \<buffer> \<C-w> :call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>:%s/\\V\\(> \\.\\*\\)\\@<!\<C-R>a/\<C-R>b/gce\<CR>"
     exe "inoremap \<buffer> \<C-w> \<Esc>:call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>:%s/\\V\\(> \\.\\*\\)\\@<!\<C-R>a/\<C-R>b/gce\<CR>"
   endif
+
+  exe "nnoremap \<buffer> \<C-q> :q"
+  exe "inoremap \<buffer> \<C-q> \<Esc>:q"
 endfunction
 
 " Translate a single word or phrase
