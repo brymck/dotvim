@@ -168,6 +168,39 @@ set noswapfile                 " Don't use a swapfile for the buffer
 nnoremap <leader>b :buffers<CR>:buffer<Space>
 
 "------------------------------------------------------------------------------
+" Eijiro
+"------------------------------------------------------------------------------
+function! LookupInEijiro(visual)
+  if a:visual
+    let a_save = @a
+    normal! gv"ay
+    let match = @a
+    let @a = a_save
+  else
+    let match = expand("<cword>")
+  end
+
+  tabnew ~/.konjac/eijiro.konjac
+
+  " Clear selection
+  normal! ggdG
+
+  " URL encoding
+  let match = substitute(match, '\s', '+', 'g')
+  let match = substitute(match, '%', '%%', 'g')
+  let match = substitute(match, '"', '%22', 'g')
+
+  let result = system('curl -s "http://eow.alc.co.jp/' . match . '/UTF-8/?ref=sa" | grep -E "searchwordfont" -A 1 | sed -e "s/\(.*\)searchwordfont/> \1/g" -e "s/<[^>][^>]*>//g" -e "/^[\s-]*$/d"')
+  let result_lines = split(result, "[\r\n]\\{1,2\\}")
+  call append("$", result_lines)
+  normal! ggdd
+
+endfunction
+
+nnoremap <leader>k :call LookupInEijiro(0)<CR>
+vnoremap <leader>k :call LookupInEijiro(1)<CR>
+
+"------------------------------------------------------------------------------
 " konjac
 "------------------------------------------------------------------------------
 " Quick editing of dictionaries
