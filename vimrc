@@ -211,6 +211,9 @@ function! SaveKonjac(from_lang, to_lang, visual, word, single, curpos)
   else
     " Replace the entire document
     execute ':' . (a:word ? '%' : '') . 's/\V' . original . '/' . translation . '/gc'
+
+    " Return to previous position in document
+    execute "normal! \<C-O>"
   endif
 endfunction
 
