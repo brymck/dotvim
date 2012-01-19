@@ -77,6 +77,28 @@ vnoremap > >gv
 nnoremap <leader>l :set list!<CR>
 
 "------------------------------------------------------------------------------
+" Insert mode
+"------------------------------------------------------------------------------
+" Ctrl+Backspace deletes previous word
+inoremap <D-BS> <C-W>
+
+" More natural keybindings in insert mode for Mac
+inoremap <M-Left> <C-Left>
+inoremap <M-Right> <C-Right>
+inoremap <D-Left> <Home>
+inoremap <D-Right> <End>
+
+" Selecting text
+inoremap <S-D-Left> <S-Home>
+inoremap <S-D-Right> <S-End>
+inoremap <S-M-Left> <S-C-Left>
+inoremap <S-M-Right> <S-C-Right>
+snoremap <S-D-Left> <S-Home>
+snoremap <S-D-Right> <S-End>
+snoremap <S-M-Left> <S-C-Left>
+snoremap <S-M-Right> <S-C-Right>
+
+"------------------------------------------------------------------------------
 " Tabular
 "------------------------------------------------------------------------------
 " Shortcuts for aligning tables with common delimiters
@@ -151,64 +173,107 @@ nnoremap <leader>b :buffers<CR>:buffer<Space>
 nnoremap <leader>ki :!konjac import %<CR>
 nnoremap <leader>kt :!konjac translate % -f
 
-function! SaveKonjac(from_lang, to_lang)
-  " Move to top and copy first line
-  normal gg2l"ay$
+function! SaveKonjac(from_lang, to_lang, visual, word, single, curpos)
+  let original = getline(1)[2:]
+  let translation = getline(2)
 
-  " Copy translation
-  normal j0"by$
-  set nowarn
-  silent exe "normal! :!konjac add -o \"\<C-R>a\" -f " . a:from_lang . " -r \"\<C-R>b\" -t " . a:to_lang . "\<CR>"
-  
-  q
-endfunction
+  " Leave if no translation has been provided
+  if translation == ""
+    echo "No translation provided, so no changes were made to dictionary."
+    bdelete!
+    return
+  endif
 
-function! OpenKonjac(from_lang, to_lang, single, visual)
-  " Open the temp file in a horizontal split
-  below 12sp ~/.konjac/sp.konjac
+  " Add translation to dictionary
+  silent execute 'normal! :!konjac add -f ' . a:from_lang . ' -t ' . a:to_lang . ' -o "' . original . '" -r "' . translation . '"'
 
-  " Clear file
-  normal ggdG
-  
-  " Paste register
-  normal "ap
-
-  exe "normal \"aY0i> \<Esc>"
-  exe "normal :r !konjac suggest \"\<C-R>a\" -f " . a:from_lang . " -t " . a:to_lang . "\<CR>"
-  exe "normal ggo\<Esc>majy$'apdF x0df "
+  " Close current buffer
+  bdelete!
 
   if a:single
     if a:visual
-      exe "nnoremap \<buffer> \<C-w> :call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>`ade\"bP"
-      exe "inoremap \<buffer> \<C-w> \<Esc>:call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>`ade\"bP"
+      " Go to and delete the last visual selection
+      normal! gvx
     else
-      exe "nnoremap \<buffer> \<C-w> :call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>gvx\"bP"
-      exe "inoremap \<buffer> \<C-w> \<Esc>:call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>gvx\"bP"
+      " Set the previous cursor position and delete the inner word
+      call setpos(".", a:curpos)
+      normal! diw
     endif
+
+    " Save the cursor position and contents of register a, paste the new word,
+    " then restore the position and register contents
+    let curpos = getpos(".")
+    let a_save = @a
+    let @a = translation
+    normal! "aP
+    let @a = a_save
+    call setpos(".", curpos)
   else
-    exe "nnoremap \<buffer> \<C-w> :call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>:%s/\\V\\(> \\.\\*\\)\\@<!\<C-R>a/\<C-R>b/gce\<CR>"
-    exe "inoremap \<buffer> \<C-w> \<Esc>:call SaveKonjac(\"" . a:from_lang . "\",\"" . a:to_lang . "\")\<CR>:%s/\\V\\(> \\.\\*\\)\\@<!\<C-R>a/\<C-R>b/gce\<CR>"
+    " Replace the entire document
+    execute ':' . (a:word ? '%' : '') . 's/\V' . original . '/' . translation . '/gc'
+  endif
+endfunction
+
+function! OpenKonjac(from_lang, to_lang, visual, word, single)
+  " Get cursor position
+  let curpos = getpos(".")
+
+  if a:visual
+    " Save register a, yank visual selection into register a, store those in a
+    " variable, restore register a
+    let a_save = @a
+    normal! gv"ay
+    let match = @a
+    let @a = a_save
+  else
+    let match = a:word ? expand("<cword>") : getline(".")
   endif
 
-  exe "nnoremap \<buffer> \<C-q> :q<CR>"
-  exe "inoremap \<buffer> \<C-q> \<Esc>:q<CR>"
+  " Get results from konjac
+  let result = system("konjac suggest \"" . match . "\" -f " . a:from_lang . " -t " . a:to_lang)
+  let result_lines = split(result, "[\r\n]\\{1,2\\}")
+  let result_lines_len = len(result_lines)
+
+  " Open split above text selection
+  execute "above " . (result_lines_len + 2) . "sp ~/.konjac/vim_temp.konjac"
+
+  " Clear file
+  normal! ggdG
+
+  " Write results of konjac suggest
+  call setline(1, "> " . match)
+  call append("$", "")
+  call append("$", result_lines)
+  normal! 2G
+  if result_lines_len > 0
+    call setline(2, substitute(result_lines[0], '^\d\+: \(.*\) (\d\+%)$', '\1', ''))
+  endif
+
+  " Define arguments
+  let args = '"' . a:from_lang . '","' . a:to_lang . '",' . a:visual . ',' . a:word . ',' . a:single . ',' . string(curpos)
+
+  " Create buffer-specific remappings
+  execute "nnoremap \<buffer> \<C-w> :call SaveKonjac(" . args . ")\<CR>"
+  execute "inoremap \<buffer> \<C-w> \<Esc>:call SaveKonjac(" . args . ")\<CR>"
+  execute "nnoremap \<buffer> \<C-q> :q<CR>"
+  execute "inoremap \<buffer> \<C-q> \<Esc>:q<CR>"
 endfunction
 
 " Translate a single word or phrase
-nnoremap <leader>se "ayemaemb`a:call OpenKonjac("ja", "en", 1, 0)<CR>
-vnoremap <leader>se "ayma:call OpenKonjac("ja", "en", 1, 1)<CR>
-nnoremap <leader>sj "ayemaemb`a:call OpenKonjac("en", "ja", 1, 0)<CR>
-vnoremap <leader>sj "ayma:call OpenKonjac("en", "ja", 1, 1)<CR>
+nnoremap <leader>se :call OpenKonjac("ja", "en", 0, 1, 1)<CR>
+vnoremap <leader>se :call OpenKonjac("ja", "en", 1, 1, 1)<CR>
+nnoremap <leader>sj :call OpenKonjac("en", "ja", 0, 1, 1)<CR>
+vnoremap <leader>sj :call OpenKonjac("en", "ja", 1, 1, 1)<CR>
 
 " Translate a line
-nnoremap <leader>E 0"ay$ma$mb`a:call OpenKonjac("ja", "en", 1, 0)<CR>
-nnoremap <leader>E 0"ay$ma$mb`a:call OpenKonjac("en", "ja", 1, 0)<CR>
+nnoremap <leader>E :call OpenKonjac("ja", "en", 0, 0, 1)<CR>
+nnoremap <leader>E :call OpenKonjac("en", "ja", 0, 0, 1)<CR>
 
 " Translate word or phrase for entire document
-nnoremap <leader>e "ayema:call OpenKonjac("ja", "en", 0, 0)<CR>
-vnoremap <leader>e "ayma:call OpenKonjac("ja", "en", 0, 1)<CR>
-nnoremap <leader>j "ayema:call OpenKonjac("en", "ja", 0, 0)<CR>
-vnoremap <leader>j "ayma:call OpenKonjac("en", "ja", 0, 1)<CR>
+nnoremap <leader>e :call OpenKonjac("ja", "en", 0, 1, 0)<CR>
+vnoremap <leader>e :call OpenKonjac("ja", "en", 1, 1, 0)<CR>
+nnoremap <leader>j :call OpenKonjac("en", "ja", 0, 1, 0)<CR>
+vnoremap <leader>j :call OpenKonjac("en", "ja", 1, 1, 0)<CR>
 
 "------------------------------------------------------------------------------
 " NERDTree
