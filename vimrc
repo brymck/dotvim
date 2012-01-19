@@ -170,8 +170,8 @@ nnoremap <leader>b :buffers<CR>:buffer<Space>
 "------------------------------------------------------------------------------
 " konjac
 "------------------------------------------------------------------------------
-nnoremap <leader>ki :!konjac import %<CR>
-nnoremap <leader>kt :!konjac translate % -f
+" Quick editing of dictionaries
+nnoremap <leader>d :e! ~/.konjac/dict.yml<Left><Left><Left><Left>
 
 function! SaveKonjac(from_lang, to_lang, visual, word, single, curpos)
   let original = getline(1)[2:]
