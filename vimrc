@@ -115,6 +115,10 @@ if exists(":Tabularize")
   nnoremap <leader>t: :Tabularize /:\zs/l0l1<CR>
   vnoremap <leader>t: :Tabularize /:\zs/l0l1<CR>
 
+  " Commas
+  nnoremap <leader>t, :Tabularize /,\zs/l0l1<CR>
+  vnoremap <leader>t, :Tabularize /,\zs/l0l1<CR>
+
   " Hashrockets
   nnoremap <leader>t> :Tabularize /=><CR>
   vnoremap <leader>t> :Tabularize /=><CR>
@@ -174,7 +178,7 @@ function! LookupInEijiro(visual)
   if a:visual
     let a_save = @a
     normal! gv"ay
-    let match = @a
+    let match = '"' . @a . '"'
     let @a = a_save
   else
     let match = expand("<cword>")
