@@ -340,6 +340,7 @@ let g:tex_flavor='latex'       " Default to LaTeX instead of PlainTeX
 nnoremap / /\v/<Left>
 nnoremap ? ?\v/<Left>
 nnoremap <leader>/ :%s/\v/g<Left><Left>
+nnoremap <leader>; :%s/\v^\+\zs/g<Left><Left>
 
 " Copy current word or selection and replace for the entire document
 nnoremap <leader>s yiw:%s/\<<C-r>"\>//gc<Left><Left><Left>
