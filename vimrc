@@ -32,6 +32,11 @@ set visualbell                 " Use visual bell instead of beeping
 set vb t_vb=                   " No beep or flash
 set timeoutlen=500             " Wait 0.5 s for a key sequence to complete
 
+" Use par for paragraph formatting
+if executable("par")
+  set formatprg=par\ -w80
+end
+
 "------------------------------------------------------------------------------
 " Leader commands
 "------------------------------------------------------------------------------
@@ -211,8 +216,8 @@ vnoremap <leader>k :call LookupInEijiro(1)<CR>
 nnoremap <leader>d :e! ~/.konjac/dict.yml<Left><Left><Left><Left>
 
 function! SaveKonjac(from_lang, to_lang, visual, word, single, curpos)
-  let original = getline(1)[2:]
-  let translation = getline(2)
+  let original = getline(1)[1:]
+  let translation = getline(2)[1:]
 
   " Leave if no translation has been provided
   if translation == ""
@@ -222,7 +227,7 @@ function! SaveKonjac(from_lang, to_lang, visual, word, single, curpos)
   endif
 
   " Add translation to dictionary
-  silent execute 'normal! :!konjac add -f ' . a:from_lang . ' -t ' . a:to_lang . ' -o "' . original . '" -r "' . translation . '"'
+  silent execute "normal! :!konjac add -f " . a:from_lang . " -t " . a:to_lang . " -o '" . original . "' -r '" . translation . "'\<CR>"
 
   " Close current buffer
   bdelete!
@@ -275,18 +280,19 @@ function! OpenKonjac(from_lang, to_lang, visual, word, single)
   let result_lines_len = len(result_lines)
 
   " Open split above text selection
-  execute "above " . (result_lines_len + 2) . "sp ~/.konjac/vim_temp.konjac"
+  execute "above " . (result_lines_len + 2) . "sp ~/.konjac/vim_temp.diff"
 
   " Clear file
   normal! ggdG
 
   " Write results of konjac suggest
-  call setline(1, "> " . match)
-  call append("$", "")
+  call setline(1, "-" . match)
+  call append("$", "+")
   call append("$", result_lines)
   normal! 2G
   if result_lines_len > 0
-    call setline(2, substitute(result_lines[0], '^\d\+: \(.*\) (\d\+%)$', '\1', ''))
+    call setline(2, substitute(result_lines[0], '^\d\+: \(.*\) (\d\+%)$', '+\1', ''))
+    normal! l
   endif
 
   " Define arguments
