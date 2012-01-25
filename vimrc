@@ -215,6 +215,10 @@ vnoremap <leader>k :call LookupInEijiro(1)<CR>
 " Quick editing of dictionaries
 nnoremap <leader>d :e! ~/.konjac/dict.yml<Left><Left><Left><Left>
 
+" Quick translation
+nnoremap <leader>ze :!konjac translate % -y -f ja -t en -u 
+nnoremap <leader>zj :!konjac translate % -y -f en -t ja -u 
+
 function! SaveKonjac(from_lang, to_lang, visual, word, single, curpos)
   let original    = getline(1)[1:]
   let orig_esc    = substitute(substitute(original, '\', '\\\\', 'g'), '"', '\\"', 'g')
@@ -396,6 +400,9 @@ nnoremap <leader>1xw :call ExtractTagsWord()<CR><CR>
 "------------------------------------------------------------------------------
 " Miscellaneous
 "------------------------------------------------------------------------------
+" Fix weird mapping for applescript
+autocmd BufReadPost *.applescript set filetype=applescript
+
 " Quick remapping for colored column
 nnoremap <leader>c :set colorcolumn=0<Left>
 
