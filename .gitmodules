@@ -25,9 +25,6 @@
 [submodule "bundle/javascript_indent"]
 	path = bundle/javascript_indent
 	url = git://github.com/vim-scripts/JavaScript-Indent.git
-[submodule "bundle/latex"]
-	path = bundle/latex
-	url = git://github.com/mineiro/vim-latex.git
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
 	url = git://github.com/scrooloose/nerdcommenter.git

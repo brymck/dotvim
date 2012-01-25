@@ -216,8 +216,10 @@ vnoremap <leader>k :call LookupInEijiro(1)<CR>
 nnoremap <leader>d :e! ~/.konjac/dict.yml<Left><Left><Left><Left>
 
 function! SaveKonjac(from_lang, to_lang, visual, word, single, curpos)
-  let original = getline(1)[1:]
+  let original    = getline(1)[1:]
+  let orig_esc    = substitute(substitute(original, '\', '\\\\', 'g'), '"', '\\"', 'g')
   let translation = getline(2)[1:]
+  let trans_esc   = substitute(substitute(translation, '\', '\\\\', 'g'), '"', '\\"', 'g')
 
   " Leave if no translation has been provided
   if translation == ""
@@ -227,7 +229,7 @@ function! SaveKonjac(from_lang, to_lang, visual, word, single, curpos)
   endif
 
   " Add translation to dictionary
-  silent execute "normal! :!konjac add -f " . a:from_lang . " -t " . a:to_lang . " -o '" . original . "' -r '" . translation . "'\<CR>"
+  silent execute "normal! :!konjac add -f " . a:from_lang . " -t " . a:to_lang . " -o '" . orig_esc . "' -r '" . trans_esc . "'\<CR>"
 
   " Close current buffer
   bdelete!
@@ -252,7 +254,7 @@ function! SaveKonjac(from_lang, to_lang, visual, word, single, curpos)
     call setpos(".", curpos)
   else
     " Replace the entire document
-    execute ':' . (a:word ? '%' : '') . 's/\V\^+\zs' . original . '/' . translation . '/gc'
+    execute ':' . (a:word ? '%' : '') . 's/\V\^+\.\*\zs' . original . '/' . translation . '/gc'
 
     " Return to previous position in document
     execute "normal! \<C-O>"
@@ -340,7 +342,7 @@ let g:tex_flavor='latex'       " Default to LaTeX instead of PlainTeX
 nnoremap / /\v/<Left>
 nnoremap ? ?\v/<Left>
 nnoremap <leader>/ :%s/\v/g<Left><Left>
-nnoremap <leader>; :%s/\v^\+\zs/g<Left><Left>
+nnoremap <leader>; :%s/\v^\+.*\zs/g<Left><Left>
 
 " Copy current word or selection and replace for the entire document
 nnoremap <leader>s yiw:%s/\<<C-r>"\>//gc<Left><Left><Left>
