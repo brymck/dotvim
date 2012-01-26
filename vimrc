@@ -84,11 +84,33 @@ nnoremap <leader>l :set list!<CR>
 "------------------------------------------------------------------------------
 " Folding
 "------------------------------------------------------------------------------
+function! CustomFoldText()
+    "get first non-blank line
+    let fs = v:foldstart
+    while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
+    endwhile
+    if fs > v:foldend
+        let line = getline(v:foldstart)
+    else
+        let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
+    endif
+
+    let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+    let foldSize = 1 + v:foldend - v:foldstart
+    let foldSizeStr = " " . foldSize . " lines "
+    let foldLevelStr = repeat("+--", v:foldlevel)
+    let lineCount = line("$")
+    let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
+    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
+    return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
+endfunction
+
 set foldenable                      " Enable folding
 au BufWinLeave *.* mkview!          " Save last view
 au BufWinEnter *.* silent loadview  " Reload last view
 set foldmethod=syntax               " Base folding on syntax
 set foldlevel=5                     " Default to folding five levels
+set foldtext=CustomFoldText()       " More legible text for folded code
 
 " Map folding levels
 nnoremap <leader>f0 :set foldlevel=0<CR>
@@ -249,7 +271,7 @@ function! SaveKonjac(from_lang, to_lang, visual, word, single, curpos)
   " Leave if no translation has been provided
   if translation == ""
     echo "No translation provided, so no changes were made to dictionary."
-    bdelete!
+    normal! q!
     return
   endif
 
@@ -257,7 +279,7 @@ function! SaveKonjac(from_lang, to_lang, visual, word, single, curpos)
   silent execute "normal! :!konjac add -f " . a:from_lang . " -t " . a:to_lang . " -o '" . orig_esc . "' -r '" . trans_esc . "'\<CR>"
 
   " Close current buffer
-  bdelete!
+  normal! q!
 
   if a:single
     if a:visual
