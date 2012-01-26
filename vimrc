@@ -271,7 +271,7 @@ function! SaveKonjac(from_lang, to_lang, visual, word, single, curpos)
   " Leave if no translation has been provided
   if translation == ""
     echo "No translation provided, so no changes were made to dictionary."
-    normal! q!
+    wq!
     return
   endif
 
@@ -279,7 +279,7 @@ function! SaveKonjac(from_lang, to_lang, visual, word, single, curpos)
   silent execute "normal! :!konjac add -f " . a:from_lang . " -t " . a:to_lang . " -o '" . orig_esc . "' -r '" . trans_esc . "'\<CR>"
 
   " Close current buffer
-  normal! q!
+  wq!
 
   if a:single
     if a:visual
@@ -301,7 +301,7 @@ function! SaveKonjac(from_lang, to_lang, visual, word, single, curpos)
     call setpos(".", curpos)
   else
     " Replace the entire document
-    execute ':' . (a:word ? '%' : '') . 's/\V\^+\.\*\zs' . original . '/' . translation . '/gc'
+    execute ':' . (a:word ? '%' : '') . 's/\V' . (&filetype == 'diff' ? '\^+\.\*\zs' : '') . original . '/' . translation . '/gc'
 
     " Return to previous position in document
     execute "normal! \<C-O>"
