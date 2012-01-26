@@ -82,49 +82,6 @@ vnoremap > >gv
 nnoremap <leader>l :set list!<CR>
 
 "------------------------------------------------------------------------------
-" Folding
-"------------------------------------------------------------------------------
-function! CustomFoldText()
-    "get first non-blank line
-    let fs = v:foldstart
-    while getline(fs) =~ '^\s*$' | let fs = nextnonblank(fs + 1)
-    endwhile
-    if fs > v:foldend
-        let line = getline(v:foldstart)
-    else
-        let line = substitute(getline(fs), '\t', repeat(' ', &tabstop), 'g')
-    endif
-
-    let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
-    let foldSize = 1 + v:foldend - v:foldstart
-    let foldSizeStr = " " . foldSize . " lines "
-    let foldLevelStr = repeat("+--", v:foldlevel)
-    let lineCount = line("$")
-    let foldPercentage = printf("[%.1f", (foldSize*1.0)/lineCount*100) . "%] "
-    let expansionString = repeat(".", w - strwidth(foldSizeStr.line.foldLevelStr.foldPercentage))
-    return line . expansionString . foldSizeStr . foldPercentage . foldLevelStr
-endfunction
-
-set foldenable                      " Enable folding
-au BufWinLeave *.* mkview!          " Save last view
-au BufWinEnter *.* silent loadview  " Reload last view
-set foldmethod=syntax               " Base folding on syntax
-set foldlevel=5                     " Default to folding five levels
-set foldtext=CustomFoldText()       " More legible text for folded code
-
-" Map folding levels
-nnoremap <leader>f0 :set foldlevel=0<CR>
-nnoremap <leader>f1 :set foldlevel=1<CR>
-nnoremap <leader>f2 :set foldlevel=2<CR>
-nnoremap <leader>f3 :set foldlevel=3<CR>
-nnoremap <leader>f4 :set foldlevel=4<CR>
-nnoremap <leader>f5 :set foldlevel=5<CR>
-nnoremap <leader>f6 :set foldlevel=6<CR>
-nnoremap <leader>f7 :set foldlevel=7<CR>
-nnoremap <leader>f8 :set foldlevel=8<CR>
-nnoremap <leader>f9 :set foldlevel=9<CR>
-
-"------------------------------------------------------------------------------
 " Insert mode
 "------------------------------------------------------------------------------
 " Ctrl+Backspace deletes previous word
