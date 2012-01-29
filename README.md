@@ -98,6 +98,13 @@ This configuration utilizes the following plugins:
 * [The NERD tree](http://www.vim.org/scripts/script.php?script_id=1658) - A
   tree explorer plugin for navigating the filesystem
 
+#### [Me](https://github.com/brymck)
+
+* [konjac](https://github.com/brymck/konjac_vim) - Some Vim integration for
+  konjac
+* [v1m](https://github.com/brymck/v1m) - Some very minor functions for use
+  in translating English to and from Japanese
+
 #### Others
 
 * [coffee-script](http://www.vim.org/scripts/script.php?script_id=3590) ([Mick
@@ -138,8 +145,6 @@ This configuration utilizes the following plugins:
 * [taglist](http://www.vim.org/scripts/script.php?script_id=273) ([Yegappan
   Lakshmanan](http://www.vim.org/account/profile.php?user_id=244)) - Source
   code browser (supports C/C++, java, perl, python, tcl, sql, php, etc)
-* [v1m](https://github.com/brymck/v1m) (Me) - Some very minor functions for use
-  in translating English to and from Japanese
 * [tabular](http://www.vim.org/scripts/script.php?script_id=3464) ([Josh
   Adams](http://www.vim.org/account/profile.php?user_id=27136)) - Vim script
   for text filtering and alignment

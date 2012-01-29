@@ -67,3 +67,6 @@
 [submodule "bundle/applescript"]
 	path = bundle/applescript
 	url = git://github.com/vim-scripts/applescript.vim.git
+[submodule "bundle/konjac_vim"]
+	path = bundle/konjac_vim
+	url = git://github.com/brymck/konjac_vim
