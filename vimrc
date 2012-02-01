@@ -56,7 +56,8 @@ set softtabstop=2            " Indent two spaces when pressing tab
 set shiftwidth=2             " Indent two spaces
 set showmatch                " Jump to match when found
 
-set ruler                    " Show line number
+set number                   " Show line number
+set ruler                    " Show line and column number in lower right
 set nowrap                   " Don't wrap text
 set incsearch                " Search incrementally
 set hlsearch                 " Highlight search results
@@ -77,9 +78,6 @@ nnoremap <leader>w :set wrap!<CR>
 " Rehighlight text after indentation in visual mode
 vnoremap < <gv
 vnoremap > >gv
-
-" Rapidly toggle invisible characters, using same symbols as TextMate
-nnoremap <leader>l :set list!<CR>
 
 "------------------------------------------------------------------------------
 " Insert mode
@@ -157,13 +155,17 @@ set noimd                      " Retain input method editor memory for modes
 "------------------------------------------------------------------------------
 syntax enable                  " Enable syntax highlighting
 set t_Co=256                   " Default terminal colors to 256
-colorscheme candycode          " Use candycode scheme by default
+colorscheme nekotako           " Use custom nekotako scheme by default
+
+" Quick toggle between light and dark color schemes
+nnoremap <leader>d :colorscheme molokai<CR>
+nnoremap <leader>l :colorscheme nekotako<CR>
 
 " Set default fonts for different platforms
 if has("win32")
   set guifont=Consolas:h10:cANSI
 else
-  set guifont=Monaco:h13
+  set guifont=Menlo\ Regular:h12
 endif
 
 " Show syntax highlighting groups for word under cursor
@@ -194,9 +196,6 @@ vnoremap <leader>k :call LookupInEijiro(1)<CR>
 "------------------------------------------------------------------------------
 " konjac
 "------------------------------------------------------------------------------
-" Quick editing of dictionaries
-nnoremap <leader>d :e! ~/.konjac/dict.yml<Left><Left><Left><Left>
-
 " Quick translation
 nnoremap <leader>ze :!konjac translate % -y -f ja -t en -u 
 nnoremap <leader>zj :!konjac translate % -y -f en -t ja -u 

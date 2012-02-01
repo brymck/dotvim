@@ -73,3 +73,6 @@
 [submodule "bundle/github-colorscheme"]
 	path = bundle/github-colorscheme
 	url = git://github.com/xonecas/github-vim-colorscheme
+[submodule "bundle/nekotako"]
+	path = bundle/nekotako
+	url = git://github.com/brymck/nekotako.git
