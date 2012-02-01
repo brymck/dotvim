@@ -179,7 +179,6 @@ nnoremap <leader>b :buffers<CR>:buffer<Space>
 "------------------------------------------------------------------------------
 " Eijiro
 "------------------------------------------------------------------------------
-
 nnoremap <leader>k :call LookupInEijiro(0)<CR>
 vnoremap <leader>k :call LookupInEijiro(1)<CR>
 
