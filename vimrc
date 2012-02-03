@@ -32,6 +32,9 @@ set visualbell                 " Use visual bell instead of beeping
 set vb t_vb=                   " No beep or flash
 set timeoutlen=500             " Wait 0.5 s for a key sequence to complete
 
+set wildmode=longest:full      " Show all matches for tab-completing file names
+set wildmenu                   " Turn on wild menu
+
 " Use par for paragraph formatting
 if executable("par")
   set formatprg=par\ -w80
@@ -155,10 +158,10 @@ set noimd                      " Retain input method editor memory for modes
 "------------------------------------------------------------------------------
 syntax enable                  " Enable syntax highlighting
 set t_Co=256                   " Default terminal colors to 256
-colorscheme nekotako           " Use custom nekotako scheme by default
+colorscheme candycode          " Use candycode scheme by default
 
 " Quick toggle between light and dark color schemes
-nnoremap <leader>d :colorscheme molokai<CR>
+nnoremap <leader>d :colorscheme candycode<CR>
 nnoremap <leader>l :colorscheme nekotako<CR>
 
 " Set default fonts for different platforms
