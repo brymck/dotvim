@@ -37,7 +37,7 @@ set wildmenu                   " Turn on wild menu
 
 " Use par for paragraph formatting
 if executable("par")
-  set formatprg=par\ -w80
+  set formatprg=par\ 80gqs0
 end
 
 "------------------------------------------------------------------------------
