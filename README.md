@@ -67,12 +67,6 @@ You can add the optional stuff as follows:
     cd ~
     rm .irbrc
     ln -s .vim/irbrc .irbrc
-    touch .bash_profile
-    echo "# Shell scripts in .vim" >> .bash_profile
-    echo "export PATH=~/.vim/sh:$PATH" >> .bash_profile
-    source .bash_profile
-    cd .vim
-    bundle update
 
 Updating
 --------

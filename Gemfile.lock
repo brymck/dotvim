@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/brymck/what_methods.git
+  revision: 4651a263c20e69249b2c9c3a30c2a78d74abbc0d
+  specs:
+    what_methods (1.0.2)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -13,4 +19,5 @@ PLATFORMS
 DEPENDENCIES
   interactive_editor
   term-ansicolor
+  what_methods!
   wirble

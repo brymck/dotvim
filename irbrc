@@ -2,11 +2,12 @@ require "rubygems"
 require "interactive_editor"
 require "term/ansicolor"
 require "wirble"
+require "what_methods"
 
 autoload :Benchmark, "benchmark"
 
-# Shortcut to benchmark a block 1,000 times
-def quick(count = 1_000)
+# Shortcut to benchmark a block 100,000 times
+def quick(count = 100_000)
   Benchmark.bm do |x|
     x.report do
       count.times do
