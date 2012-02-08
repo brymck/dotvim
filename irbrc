@@ -23,8 +23,6 @@ end
 
 # Use simple mode
 IRB.conf[:PROMPT_MODE] = :SIMPLE
-
-# Auto-indent everything
 IRB.conf[:AUTO_INDENT] = true
 
 # Colorize output
@@ -32,39 +30,69 @@ Wirble.init
 Wirble.colorize
 
 module DynamicPrompt
-  class << self
-    def apply!
-      IRB.conf[:PROMPT][:INFORMATIVE] = {
-        :PROMPT_I => ">>".tap {|s| def s.dup; gsub('>>', DynamicPrompt.normal); end },
-        :PROMPT_S => Color.red { "" },
-        :PROMPT_C => "",
-        :RETURN => "\e# =>\e[0m %.2048s\n"
-      }
-      IRB.conf[:PROMPT_MODE]  = :INFORMATIVE
+  class Info < String
+    TEMPLATE = "%s %s %s%s "
+    ANSI_CODES = /\e\[\d+(?:;\d+)?m/
+
+    def initialize(opts = {})
+      @opts = { :delimiter => " >" }.merge(opts)
     end
 
-    def normal
-      "%s %s %s > " % [Color.blue(cwd),
-                       Color.red(current_ruby),
-                       Color.green("%n")]
+    # IRB calls dup on the provided string for each new line of information
+    def dup
+      TEMPLATE % [cwd, current_ruby, line_number, delimiter]
     end
 
     private
 
-    # Name of current ruby
-    def current_ruby
-      @current_ruby ||= `rvm current`.strip.sub /^ruby-/, ""
-    end
-
     # Current working directory
     def cwd
-      @dirs ||= {}
+      @@dirs ||= {}
+      @@dirs[Dir.pwd] ||= Color.blue(Dir.pwd.start_with?(ENV["HOME"]) ?
+                                     Dir.pwd.sub(ENV["HOME"], "~") :
+                                     Dir.pwd)
+    end
 
-      @dirs[Dir.pwd] ||= if Dir.pwd.start_with?(ENV["HOME"])
-                           Dir.pwd.sub ENV["HOME"], "~"
-                         else
-                           Dir.pwd
-                         end
+    # Name of current ruby
+    def current_ruby
+      @@current_ruby ||= Color.red(`rvm current`.strip.sub /^ruby-/, "")
+    end
+
+    def line_number
+      @@line_number ||= Color.green("%n")
+    end
+
+    def delimiter
+      @delimiter ||= Color.yellow(@opts[:delimiter])
+    end
+
+    # Hide the provided string
+    def hide(str)
+      " " * str.gsub(ANSI_CODES, "").size
+    end
+  end
+
+  # Same as above, but gets the correct length of its parameters and blanks them
+  # out
+  class HiddenInfo < Info
+    private
+
+    def cwd;          hide super;                          end
+    def current_ruby; hide super;                          end
+    def line_number;  @line_number ||= Color.yellow("%n"); end
+    def delimiter;    @delimiter   ||= "..";               end
+  end
+
+  class << self
+    def apply!
+      IRB.conf[:PROMPT][:INFORMATIVE] = {
+        :PROMPT_I => Info.new,
+        :PROMPT_N => Info.new,
+        :PROMPT_S => HiddenInfo.new,
+        :PROMPT_C => Info.new(:delimiter => "* "),
+        :RETURN   => "%s %%s\n" % Color.magenta("# =>")
+      }
+      IRB.conf[:PROMPT_MODE]  = :INFORMATIVE
     end
   end
 end
