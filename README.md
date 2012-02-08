@@ -22,9 +22,9 @@ Copy and paste this into a terminal:
 
 #### Explanation
 
-The above commands remove any preexisting personal Vim configuration, so backup
-anything you might wish to preserve going forward. This repo is then cloned
-into `~/.vim`, and a symbolic link is created between `~/.vimrc` and
+The above commands remove any preexisting personal Vim configuration, so
+backup anything you might wish to preserve going forward. This repo is then
+cloned into `~/.vim`, and a symbolic link is created between `~/.vimrc` and
 `~/.vim/vimrc`, which allows you to update the repo and have the changes
 reflected instantly in Vim. Once the repo is cloned, all of the submodules --
 links to Vim plugins -- are initialized and updated. A symbolic link is created
@@ -40,10 +40,8 @@ reflected in Vim. And you can do this _within Vim_ by typing `,u`!
 Note: This requires Vista or a more recent version of Windows (for `mklink`),
 and you must open the command prompt as an administrator (right-click > Run as
 administrator...). Also, some `git` commands in Windows have a nasty habit of
-causing the command prompt to "eat" subsequent pasted commands, so this needs
-to be run in three parts.
-
-First run
+causing the command prompt to "eat" subsequent pasted commands, so probably
+needs to be run in three parts.
 
     cd "%UserProfile%"
     rmdir vimfiles /S /Q
@@ -53,15 +51,28 @@ First run
     cd vimfiles
     git submodule init
 
-then
-
     git submodule update
 
-then
-    
     mkdir autoload
     cd autoload
     mklink pathogen.vim ..\pathogen\autoload\pathogen.vim
+
+Optional
+--------
+
+You can add the optional stuff as follows:
+
+### Linux / Mac OSX / Cygwin
+
+    cd ~
+    rm .irbrc
+    ln -s .vim/irbrc .irbrc
+    touch .bash_profile
+    echo "# Shell scripts in .vim" >> .bash_profile
+    echo "export PATH=~/.vim/sh:$PATH" >> .bash_profile
+    source .bash_profile
+    cd .vim
+    bundle update
 
 Updating
 --------
