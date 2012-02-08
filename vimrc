@@ -199,6 +199,9 @@ vnoremap <leader>k :call LookupInEijiro(1)<CR>
 "------------------------------------------------------------------------------
 " konjac
 "------------------------------------------------------------------------------
+" Get rid of untranslated diff sections
+nnoremap <leader>zd :%s/\v^\@\@ \d+ \@\@\n\-(.*)\n\+\1\n//gic<CR>
+
 " Quick translation
 nnoremap <leader>ze :!konjac translate % -y -f ja -t en -u 
 nnoremap <leader>zj :!konjac translate % -y -f en -t ja -u 
