@@ -8,6 +8,11 @@ unless defined?(CUSTOM_IRBRC_LOADED)
 
   autoload :Benchmark, "benchmark"
 
+  # Re-require gems easily
+  def reload(require_regex)
+    $".grep(/^#{require_regex}/).each {|e| $".delete(e) && require(e) }
+  end
+
   # Setup permanent history.
   HISTFILE = "~/.irb_history"
   MAXHISTSIZE = 100
