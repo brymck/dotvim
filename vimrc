@@ -158,7 +158,7 @@ set noimd                      " Retain input method editor memory for modes
 "------------------------------------------------------------------------------
 syntax enable                  " Enable syntax highlighting
 set t_Co=256                   " Default terminal colors to 256
-colorscheme nekotako           " Use candycode scheme by default
+colorscheme candycode          " Use candycode scheme by default
 
 " Quick toggle between light and dark color schemes
 nnoremap <leader>d :colorscheme candycode<CR>
