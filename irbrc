@@ -6,6 +6,18 @@ unless defined?(CUSTOM_IRBRC_LOADED)
   require "wirble"
   require "what_methods"
 
+  # Determine whether to show patch information
+  @@show_patch = false
+  def show_patch;  @@show_patch = true;  $current_ruby.clear; end
+  def hide_patch;  @@show_patch = false; $current_ruby.clear; end
+  def show_patch?; @@show_patch; end
+
+  # Determine whether to show the full path to the current working directory
+  @@show_path = false
+  def show_path;  @@show_path = true;  @@dirs.clear; end
+  def hide_path;  @@show_path = false; @@dirs.clear; end
+  def show_path?; @@show_patch; end
+
   autoload :Benchmark, "benchmark"
 
   # Re-require gems easily
@@ -78,14 +90,23 @@ unless defined?(CUSTOM_IRBRC_LOADED)
       # Current working directory
       def cwd
         @@dirs ||= {}
-        @@dirs[Dir.pwd] ||= Color.blue(Dir.pwd.start_with?(ENV["HOME"]) ?
-                                       Dir.pwd.sub(ENV["HOME"], "~") :
-                                       Dir.pwd)
+        return @@dirs[Dir.pwd] unless @@dirs[Dir.pwd].nil?
+
+        path = Dir.pwd.start_with?(ENV["HOME"]) ?
+               Dir.pwd.sub(ENV["HOME"], "~") :
+               Dir.pwd
+        path = path.split("/").last unless show_path?
+        @@dirs[Dir.pwd] = Color.blue(path)
       end
 
       # Name of current ruby
       def current_ruby
-        @@current_ruby ||= Color.red(`rvm current`.strip.sub /^ruby-/, "")
+        $current_ruby ||= ""
+        return $current_ruby unless $current_ruby.empty?
+
+        curr_ruby = `rvm current`.strip.sub(/^ruby-/, "")
+        curr_ruby = curr_ruby.sub(/\-p\d+$/, "") unless show_patch?
+        $current_ruby = Color.red(curr_ruby)
       end
 
       def line_number
