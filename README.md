@@ -64,9 +64,21 @@ You can add the optional stuff as follows:
 
 ### Linux / Mac OSX / Cygwin
 
-    cd ~
+    cd ~/.vim
+    bundle update
+    cd ..
     rm .irbrc
     ln -s .vim/irbrc .irbrc
+
+### Windows
+
+Again, you need to run this as an administrator:
+
+    cd "%UserProfile%\vimfiles"
+    bundle update
+    cd ..
+    del _irbrc
+    mklink _irbrc vimfiles\irbrc
 
 Updating
 --------

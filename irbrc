@@ -6,17 +6,30 @@ unless defined?(CUSTOM_IRBRC_LOADED)
   require "wirble"
   require "what_methods"
 
+  begin
+    require "win32console" if RUBY_PLATFORM =~ /win32|mingw/
+  rescue LoadError
+    raise "Run 'gem install win32console' to use color on Windows"
+  end
+
   # Determine whether to show patch information
-  @@show_patch = false
-  def show_patch;  @@show_patch = true;  $current_ruby.clear; end
-  def hide_patch;  @@show_patch = false; $current_ruby.clear; end
-  def show_patch?; @@show_patch; end
+  $show_patch = false
+  def show_patch;  $show_patch = true;  $current_ruby.clear; end
+  def hide_patch;  $show_patch = false; $current_ruby.clear; end
+  def show_patch?; $show_patch; end
 
   # Determine whether to show the full path to the current working directory
-  @@show_path = false
-  def show_path;  @@show_path = true;  @@dirs.clear; end
-  def hide_path;  @@show_path = false; @@dirs.clear; end
-  def show_path?; @@show_patch; end
+  $show_path = false
+  def show_path;  $show_path = true;  $dirs.clear; end
+  def hide_path;  $show_path = false; $dirs.clear; end
+  def show_path?; $show_path; end
+
+  # I'll fix this later once I get ANSI color codes working
+  def red(text);     text; end
+  def green(text);   text; end
+  def blue(text);    text; end
+  def yellow(text);  text; end
+  def magenta(text); text; end
 
   autoload :Benchmark, "benchmark"
 
@@ -89,14 +102,14 @@ unless defined?(CUSTOM_IRBRC_LOADED)
 
       # Current working directory
       def cwd
-        @@dirs ||= {}
-        return @@dirs[Dir.pwd] unless @@dirs[Dir.pwd].nil?
+        $dirs ||= {}
+        return $dirs[Dir.pwd] unless $dirs[Dir.pwd].nil?
 
         path = Dir.pwd.start_with?(ENV["HOME"]) ?
                Dir.pwd.sub(ENV["HOME"], "~") :
                Dir.pwd
         path = path.split("/").last unless show_path?
-        @@dirs[Dir.pwd] = Color.blue(path)
+        $dirs[Dir.pwd] = path
       end
 
       # Name of current ruby
@@ -104,17 +117,17 @@ unless defined?(CUSTOM_IRBRC_LOADED)
         $current_ruby ||= ""
         return $current_ruby unless $current_ruby.empty?
 
-        curr_ruby = `rvm current`.strip.sub(/^ruby-/, "")
+        curr_ruby = `ruby --version`[/\d+\.[\d.]+(p\d+)?/]
         curr_ruby = curr_ruby.sub(/\-p\d+$/, "") unless show_patch?
-        $current_ruby = Color.red(curr_ruby)
+        $current_ruby = red(curr_ruby)
       end
 
       def line_number
-        @@line_number ||= Color.green("%n")
+        @line_number ||= green("%n")
       end
 
       def delimiter
-        @delimiter ||= Color.yellow(@opts[:delimiter])
+        @delimiter ||= yellow(@opts[:delimiter])
       end
 
       # Hide the provided string
@@ -128,10 +141,10 @@ unless defined?(CUSTOM_IRBRC_LOADED)
     class HiddenInfo < Info
       private
 
-      def cwd;          hide super;                          end
-      def current_ruby; hide super;                          end
-      def line_number;  @line_number ||= Color.yellow("%n"); end
-      def delimiter;    @delimiter   ||= "..";               end
+      def cwd;          hide super;                    end
+      def current_ruby; hide super;                    end
+      def line_number;  @line_number ||= yellow("%n"); end
+      def delimiter;    @delimiter   ||= "..";         end
     end
 
     class << self
@@ -141,7 +154,7 @@ unless defined?(CUSTOM_IRBRC_LOADED)
           :PROMPT_N => Info.new,
           :PROMPT_S => HiddenInfo.new,
           :PROMPT_C => Info.new(:delimiter => "* "),
-          :RETURN   => "%s %%s\n" % Color.magenta("# =>")
+          :RETURN   => "%s %%s\n" % magenta("# =>")
         }
         IRB.conf[:PROMPT_MODE]  = :INFORMATIVE
       end
