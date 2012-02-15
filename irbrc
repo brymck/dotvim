@@ -6,6 +6,10 @@ unless defined?(CUSTOM_IRBRC_LOADED)
   require "wirble"
   require "what_methods"
 
+  # For my own sanity
+  require "konjac"
+  include Konjac
+
   begin
     require "win32console" if RUBY_PLATFORM =~ /win32|mingw/
   rescue LoadError
