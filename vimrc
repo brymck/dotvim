@@ -49,6 +49,9 @@ let mapleader=","              " Set leader to comma
 execute "nnoremap <leader>v :e! " . vimfiles_path . "vimrc<CR>"
 execute "autocmd! bufwritepost vimrc source " . vimrc_path
 
+" Fast looking in gems
+nnoremap <leader>g :exe "e " . escape(system("gem which "), ' ')<Left><Left><Left><Left><Left><Left><Left><Left>
+
 "------------------------------------------------------------------------------
 " Indent
 "------------------------------------------------------------------------------
