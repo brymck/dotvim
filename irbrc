@@ -39,7 +39,7 @@ unless defined?(CUSTOM_IRBRC_LOADED)
 
   # Re-require gems easily
   def reload(require_regex)
-    $".grep(/^#{require_regex}/).each {|e| $".delete(e) && require(e) }
+    $".grep(/#{require_regex}/).each {|e| $".delete(e) && require(e) }
   end
 
   # Setup permanent history.
