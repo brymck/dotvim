@@ -234,6 +234,15 @@ vnoremap <leader>j :call OpenKonjac("en", "ja", 1, 1, 0)<CR>
 map <leader>, :NERDTreeToggle<CR>
 
 "------------------------------------------------------------------------------
+" Notes
+"------------------------------------------------------------------------------
+" Write to Documents/Notes by default
+let g:notes_directory='~/Documents/Notes'
+
+" No smart quotes
+let g:notes_smart_quotes=0
+
+"------------------------------------------------------------------------------
 " LaTeX
 "------------------------------------------------------------------------------
 set shellslash                 " For Win32
