@@ -40,6 +40,9 @@ if executable("par")
   set formatprg=par\ 80gqs0
 end
 
+" Allow jj to be used to escape from insert mode  
+inoremap jj <Esc>
+
 "------------------------------------------------------------------------------
 " Leader commands
 "------------------------------------------------------------------------------
