@@ -82,3 +82,6 @@
 [submodule "bundle/notes"]
 	path = bundle/notes
 	url = git://github.com/xolox/vim-notes.git
+[submodule "bundle/clojure"]
+	path = bundle/clojure
+	url = git://github.com/vim-scripts/VimClojure.git
