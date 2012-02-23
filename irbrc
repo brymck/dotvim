@@ -1,6 +1,7 @@
 unless defined?(CUSTOM_IRBRC_LOADED)
   require "rubygems"
   require "interactive_editor"
+  require "interactive_rspec"
   require "irb/completion"
   require "term/ansicolor"
   require "wirble"
