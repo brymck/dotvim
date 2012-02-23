@@ -25,6 +25,9 @@ The reason for all the symbolic links and git submodules is simple: from now
 on, you only have to update this repo and its submodules to have all changes
 reflected in Vim. And you can do this _within Vim_ by typing `,u`!
 
+Note that you can add your own stuff to `~/.vimrc_custom`, in off-chance you
+disagree with any of my settings.
+
 ### Windows
 
 Note: This requires Vista or a more recent version of Windows (for `mklink`),
