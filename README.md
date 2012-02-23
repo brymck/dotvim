@@ -8,21 +8,11 @@ Installation
 
 Copy and paste this into a terminal:
 
-    cd ~
-    rm -rf .vim
-    git clone http://github.com/brymck/dotvim.git .vim
-    rm .vimrc
-    ln -s .vim/vimrc .vimrc
-    cd .vim
-    git submodule init
-    git submodule update
-    mkdir autoload
-    cd autoload
-    ln -s ../pathogen/autoload/pathogen.vim pathogen.vim
+    bash -s < <(curl -s https://raw.github.com/brymck/dotvim/master/bin/install)
 
 #### Explanation
 
-The above commands remove any preexisting personal Vim configuration, so
+The above script removes any preexisting personal Vim configuration, so
 backup anything you might wish to preserve going forward. This repo is then
 cloned into `~/.vim`, and a symbolic link is created between `~/.vimrc` and
 `~/.vim/vimrc`, which allows you to update the repo and have the changes
@@ -57,22 +47,7 @@ needs to be run in three parts.
     cd autoload
     mklink pathogen.vim ..\pathogen\autoload\pathogen.vim
 
-Optional
---------
-
 You can add the optional stuff as follows:
-
-### Linux / Mac OSX / Cygwin
-
-    cd ~/.vim
-    bundle update
-    cd ..
-    rm .irbrc
-    ln -s .vim/irbrc .irbrc
-
-### Windows
-
-Again, you need to run this as an administrator:
 
     cd "%UserProfile%\vimfiles"
     bundle update

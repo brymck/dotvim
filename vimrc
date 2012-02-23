@@ -333,3 +333,8 @@ execute "nnoremap <leader>u :!cd " . vimfiles_path . " && git pull origin master
 " Add new plugin
 execute "nnoremap <leader>x :!cd " . vimfiles_path . " && git submodule add git://github.com/"
 execute "nnoremap <leader>xu :!cd " . vimfiles_path . " && git submodule init && git submodule update<CR><CR>"
+
+" Load custom additions to vimrc
+if filereadable($HOME . "/.vimrc_custom")
+  source $HOME/.vimrc_custom
+endif
