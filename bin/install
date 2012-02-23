@@ -6,7 +6,7 @@ rm -rf .vim
 rm .vimrc
 
 # Clone my Vim files
-git clone http://github.com/brymck/dotvim.git .vim
+git clone git://github.com/brymck/dotvim.git .vim
 ln -s .vim/vimrc .vimrc
 cd .vim
 
