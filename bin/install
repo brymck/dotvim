@@ -1,23 +1,23 @@
 #!/bin/bash
 
 # Remove existing Vim files
-cd ~
+# cd ~
 rm -rf .vim
-rm .vimrc
+# rm .vimrc
 
 # Clone my Vim files
-git clone http://github.com/brymck/dotvim.git .vim
-ln -s .vim/vimrc .vimrc
-cd .vim
+# git clone http://github.com/brymck/dotvim.git .vim
+# ln -s .vim/vimrc .vimrc
+# cd .vim
 
 # Initialize and pull all submodules
-git submodule init
-git submodule update
+# git submodule init
+# git submodule update
 
 # Add pathogen
-mkdir autoload
-cd autoload
-ln -s ../pathogen/autoload/pathogen.vim pathogen.vim
+# mkdir autoload
+# cd autoload
+# ln -s ../pathogen/autoload/pathogen.vim pathogen.vim
 
 # Ask user whether to install the Ruby extras
 while true
@@ -41,17 +41,17 @@ do
 done
 
 # Install Ruby extras
-cd ~/.vim
-bundle update
+# cd ~/.vim
+# bundle update
 
 # Install some extensions I made for Ruby reflection
-git clone git://github.com/brymck/what_methods.git .what
-cd .what
-rake install
-cd -
-rm -rf .what
+# git clone git://github.com/brymck/what_methods.git .what
+# cd .what
+# rake install
+# cd -
+# rm -rf .what
 
 # Link up IRB
-cd ~
-rm .irbrc
-ln -s .vim/irbrc .irbrc
+# cd ~
+# rm .irbrc
+# ln -s .vim/irbrc .irbrc
