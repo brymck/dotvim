@@ -23,7 +23,7 @@ rm -rf .vim
 while true
 do
   echo -n "Do you wish to install the Ruby extras? (y/n) "
-  stty -echo raw
+  stty -echo raw 2>/dev/null
   yn=$(dd bs=1 count=1 2>/dev/null)
   stty echo -raw
   echo $yn
