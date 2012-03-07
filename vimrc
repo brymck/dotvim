@@ -309,6 +309,25 @@ nnoremap <leader>1xp :call ExtractTagsPowerPoint()<CR><CR>
 nnoremap <leader>1xw :call ExtractTagsWord()<CR><CR>
 
 "------------------------------------------------------------------------------
+" Conque
+"------------------------------------------------------------------------------
+" Use Ctrl+W to change tabs in insert mode
+let g:ConqueTerm_CWInsert = 1
+
+" Automatically go into insert mode
+let g:ConqueTerm_InsertOnEnter = 1
+
+nnoremap <leader>qj :ConqueTermSplit bash -c "node"<CR>
+nnoremap <leader>qr :ConqueTermSplit bash -c "irb"<CR>
+
+" Mappings similar to SLIME
+let g:ConqueTerm_SendFileKey = '<C-C><C-C>'
+let g:ConqueTerm_SendVisKey = '<C-C><C-C>'
+
+" Automatically close buffer when program exits
+let g:ConqueTerm_CloseOnEnd = 1
+
+"------------------------------------------------------------------------------
 " Windows
 "------------------------------------------------------------------------------
 inoremap <Bslash> _
