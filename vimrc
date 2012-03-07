@@ -14,7 +14,8 @@ filetype plugin on             " Enable filetype plugin
 filetype indent on             " Enable indent pluing
 
 " Get cross-platform runtime and paths
-if has("win32")
+let is_windows=has("win32")
+if is_windows
   let vimfiles_path="~/vimfiles/"
   let vimrc_path="~/_vimrc"
 else
@@ -38,7 +39,7 @@ set wildmenu                   " Turn on wild menu
 " Use par for paragraph formatting
 if executable("par")
   set formatprg=par\ 80gqs0
-end
+endif
 
 " Allow jj to be used to escape from insert mode  
 inoremap jj <Esc>
@@ -308,6 +309,11 @@ nnoremap <leader>1xp :call ExtractTagsPowerPoint()<CR><CR>
 nnoremap <leader>1xw :call ExtractTagsWord()<CR><CR>
 
 "------------------------------------------------------------------------------
+" Windows
+"------------------------------------------------------------------------------
+inoremap <Bslash> _
+
+"------------------------------------------------------------------------------
 " Miscellaneous
 "------------------------------------------------------------------------------
 " Fix weird mapping for applescript
@@ -324,6 +330,11 @@ let macvim_skip_cmd_opt_movement=1
 nnoremap <S-D-Right> :tabnext<CR>
 nnoremap <S-D-Left> :tabprevious<CR>
 
+" New tab shortcut for Windows
+if is_windows
+  nnoremap <C-T> :tabnew<CR>
+endif
+
 " Spellcheck
 nnoremap <leader>sc :! aspell -c %<CR>
 
@@ -335,6 +346,12 @@ execute "nnoremap <leader>x :!cd " . vimfiles_path . " && git submodule add git:
 execute "nnoremap <leader>xu :!cd " . vimfiles_path . " && git submodule init && git submodule update<CR><CR>"
 
 " Load custom additions to vimrc
-if filereadable($HOME . "/.vimrc_custom")
-  source $HOME/.vimrc_custom
+if is_windows
+  if filereadable($HOME . "/_vimrc_custom")
+    source $HOME/_vimrc_custom
+  endif
+else
+  if filereadable($HOME . "/.vimrc_custom")
+    source $HOME/.vimrc_custom
+  endif
 endif
