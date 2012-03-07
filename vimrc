@@ -311,12 +311,11 @@ nnoremap <leader>1xw :call ExtractTagsWord()<CR><CR>
 "------------------------------------------------------------------------------
 " Conque
 "------------------------------------------------------------------------------
-" Use Ctrl+W to change tabs in insert mode
+" Map Ctrl+W to change tabs in insert mode
 let g:ConqueTerm_CWInsert = 1
 
-" Automatically go into insert mode
-let g:ConqueTerm_InsertOnEnter = 1
-
+" Different interactive shell environments
+nnoremap <leader>qb :ConqueTermSplit bash<CR>
 nnoremap <leader>qj :ConqueTermSplit bash -c "node"<CR>
 nnoremap <leader>qr :ConqueTermSplit bash -c "irb"<CR>
 
@@ -327,10 +326,11 @@ let g:ConqueTerm_SendVisKey = '<C-C><C-C>'
 " Automatically close buffer when program exits
 let g:ConqueTerm_CloseOnEnd = 1
 
-"------------------------------------------------------------------------------
-" Windows
-"------------------------------------------------------------------------------
-inoremap <Bslash> _
+" Regex for highlighting prompt
+let g:ConqueTerm_PromptRegex = '\v^(\S+\$|\>|\S+ [0-9.p]+ \d+ \>)'
+
+" Ignore start messages
+let g:ConqueTerm_StartMessages = 0
 
 "------------------------------------------------------------------------------
 " Miscellaneous
