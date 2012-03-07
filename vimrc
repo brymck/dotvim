@@ -327,7 +327,7 @@ let g:ConqueTerm_SendVisKey = '<C-C><C-C>'
 let g:ConqueTerm_CloseOnEnd = 1
 
 " Regex for highlighting prompt
-let g:ConqueTerm_PromptRegex = '\v^(\S+\$|\>|\S+ [0-9.p]+ \d+ \>)'
+let g:ConqueTerm_PromptRegex = '\v^(\S+\$|\>|\S+ [0-9.p]+ \d+(\*| \>)|\s+\d\.\.)'
 
 " Ignore start messages
 let g:ConqueTerm_StartMessages = 0
