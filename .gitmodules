@@ -42,6 +42,9 @@
 [submodule "bundle/konjac_vim"]
 	path = bundle/konjac_vim
 	url = git://github.com/brymck/konjac_vim
+[submodule "bundle/markdown"]
+	path = bundle/markdown
+	url = git://github.com/hallison/vim-markdown.git
 [submodule "bundle/nekotako"]
 	path = bundle/nekotako
 	url = git://github.com/brymck/nekotako.git
@@ -69,6 +72,9 @@
 [submodule "bundle/rdoc"]
 	path = bundle/rdoc
 	url = git://github.com/depuracao/vim-rdoc.git.git
+[submodule "bundle/ruby-refactoring"]
+	path = bundle/ruby-refactoring
+	url = git://github.com/ecomba/vim-ruby-refactoring.git
 [submodule "bundle/scroll_colors"]
 	path = bundle/scroll_colors
 	url = git://github.com/vim-scripts/ScrollColors.git
@@ -85,12 +91,9 @@
 	path = bundle/unimpaired
 	url = git://github.com/tpope/vim-unimpaired.git
 	ignored = untracked
-[submodule "bundle/v1m"]
-	path = bundle/v1m
-	url = git://github.com/brymck/v1m.git
 [submodule "bundle/tabular"]
 	path = bundle/tabular
 	url = git://github.com/godlygeek/tabular.git
-[submodule "bundle/ruby-refactoring"]
-	path = bundle/ruby-refactoring
-	url = git://github.com/ecomba/vim-ruby-refactoring.git
+[submodule "bundle/v1m"]
+	path = bundle/v1m
+	url = git://github.com/brymck/v1m.git

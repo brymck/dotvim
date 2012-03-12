@@ -18,9 +18,13 @@ let is_windows=has("win32")
 if is_windows
   let vimfiles_path="~/vimfiles/"
   let vimrc_path="~/_vimrc"
+  let terminal="cmd"
+  let terminal_flag="/c"
 else
   let vimfiles_path="~/.vim/"
   let vimrc_path="~/.vimrc"
+  let terminal="bash"
+  let terminal_flag="-c"
 endif
 
 set autoread                   " Set to autoread when file is changed
@@ -315,9 +319,10 @@ nnoremap <leader>1xw :call ExtractTagsWord()<CR><CR>
 let g:ConqueTerm_CWInsert = 1
 
 " Different interactive shell environments
-nnoremap <leader>qb :ConqueTermSplit bash<CR>
-nnoremap <leader>qj :ConqueTermSplit bash -c "node"<CR>
-nnoremap <leader>qr :ConqueTermSplit bash -c "irb"<CR>
+exe "nnoremap <leader>qb :ConqueTermSplit " . terminal . "<CR>"
+exe "nnoremap <leader>qj :ConqueTermSplit " . terminal . " " . terminal_flag . " node<CR>"
+exe "nnoremap <leader>qp :ConqueTermSplit " . terminal . " " . terminal_flag . " re.pl<CR>"
+exe "nnoremap <leader>qr :ConqueTermSplit " . terminal . " " . terminal_flag . " irb<CR>"
 
 " Mappings similar to SLIME
 let g:ConqueTerm_SendFileKey = '<C-C><C-C>'
