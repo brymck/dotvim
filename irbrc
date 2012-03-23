@@ -5,7 +5,7 @@ unless defined?(CUSTOM_IRBRC_LOADED)
   require "irb/completion"
   require "term/ansicolor"
   require "wirble"
-  require "what_methods"
+  require "whats_up/classic"
 
   # For my own sanity
   require "konjac"

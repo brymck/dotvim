@@ -42,7 +42,7 @@ set wildmenu                   " Turn on wild menu
 
 " Use par for paragraph formatting
 if executable("par")
-  set formatprg=par\ 80gqs0
+  set formatprg=par\ 100gqs0
 endif
 
 " Allow jj to be used to escape from insert mode  
