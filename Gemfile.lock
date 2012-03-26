@@ -1,16 +1,16 @@
-GIT
-  remote: git://github.com/brymck/what_methods.git
-  revision: 83adabfafd8f82559a02d78ca16e0783adfe55ff
-  specs:
-    what_methods (1.0.2)
-
 GEM
   remote: http://rubygems.org/
   specs:
     amatch (0.2.10)
       tins (~> 0.3)
+    binding_of_caller (0.6.7)
+    coderay (1.0.5)
     diff-lcs (1.1.3)
+    diffy (2.0.6)
     git (1.2.5)
+    grit (2.4.1)
+      diff-lcs (~> 1.1)
+      mime-types (~> 1.15)
     highline (1.6.11)
     i18n (0.6.0)
     interactive_editor (0.0.10)
@@ -28,27 +28,58 @@ GEM
       sdoc
       term-ansicolor
       trollop
+    method_source (0.7.1)
+    mime-types (1.18)
     nokogiri (1.5.2)
     nokogiri (1.5.2-x86-mingw32)
+    pry (0.9.8.4)
+      coderay (~> 1.0.5)
+      method_source (~> 0.7.1)
+      slop (>= 2.4.4, < 3)
+    pry (0.9.8.4-x86-mingw32)
+      coderay (~> 1.0.5)
+      method_source (~> 0.7.1)
+      slop (>= 2.4.4, < 3)
+      win32console (~> 1.3)
+    pry-doc (0.4.1)
+      pry (>= 0.9.0)
+      yard (~> 0.7.4)
+    pry-git (0.2.2)
+      diffy
+      grit
+      pry (>= 0.9.2)
+    pry-nav (0.2.0)
+      pry (~> 0.9.8.1)
+    pry-remote (0.1.1)
+      pry (~> 0.9.8)
+      slop (~> 2.1)
+    pry-stack_explorer (0.4.1)
+      binding_of_caller (~> 0.6.2)
+      pry (~> 0.9.8.2)
     rb-appscript (0.6.1)
     rdoc (3.12)
       json (~> 1.4)
-    rspec (2.8.0)
-      rspec-core (~> 2.8.0)
-      rspec-expectations (~> 2.8.0)
-      rspec-mocks (~> 2.8.0)
-    rspec-core (2.8.0)
-    rspec-expectations (2.8.0)
-      diff-lcs (~> 1.1.2)
-    rspec-mocks (2.8.0)
+    rspec (2.9.0)
+      rspec-core (~> 2.9.0)
+      rspec-expectations (~> 2.9.0)
+      rspec-mocks (~> 2.9.0)
+    rspec-core (2.9.0)
+    rspec-expectations (2.9.0)
+      diff-lcs (~> 1.1.3)
+    rspec-mocks (2.9.0)
     sdoc (0.3.16)
       json (>= 1.1.3)
       rdoc (~> 3.10)
+    slop (2.4.4)
     spoon (0.0.1)
     term-ansicolor (1.0.7)
-    tins (0.3.10)
+    tins (0.3.12)
     trollop (1.16.2)
+    whats_up (1.2.2)
+      sdoc
+    win32console (1.3.0-x86-mingw32)
     wirble (0.1.3)
+    yard (0.7.5)
 
 PLATFORMS
   ruby
@@ -58,6 +89,12 @@ DEPENDENCIES
   interactive_editor
   interactive_rspec
   konjac
+  pry
+  pry-doc
+  pry-git
+  pry-nav
+  pry-remote
+  pry-stack_explorer
   term-ansicolor
-  what_methods!
+  whats_up
   wirble

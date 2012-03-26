@@ -154,14 +154,17 @@ unless defined?(CUSTOM_IRBRC_LOADED)
 
     class << self
       def apply!
-        IRB.conf[:PROMPT][:INFORMATIVE] = {
-          :PROMPT_I => Info.new,
-          :PROMPT_N => Info.new,
-          :PROMPT_S => HiddenInfo.new,
-          :PROMPT_C => Info.new(:delimiter => "* "),
-          :RETURN   => "%s %%s\n" % magenta("# =>")
-        }
-        IRB.conf[:PROMPT_MODE]  = :INFORMATIVE
+        # Don't do this if we have pry loaded
+        unless IRB.conf[:PROMPT].nil?
+          IRB.conf[:PROMPT][:INFORMATIVE] = {
+            :PROMPT_I => Info.new,
+            :PROMPT_N => Info.new,
+            :PROMPT_S => HiddenInfo.new,
+            :PROMPT_C => Info.new(:delimiter => "* "),
+            :RETURN   => "%s %%s\n" % magenta("# =>")
+          }
+          IRB.conf[:PROMPT_MODE]  = :INFORMATIVE
+        end
       end
     end
   end

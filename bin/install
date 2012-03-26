@@ -23,14 +23,8 @@ ln -s ../pathogen/autoload/pathogen.vim pathogen.vim
 cd ~/.vim
 bundle update
 
-# Install some extensions I made for Ruby reflection
-git clone git://github.com/brymck/what_methods.git .what
-cd .what
-rake install
-cd -
-rm -rf .what
-
 # Link up IRB
 cd ~
 rm .irbrc
 ln -s .vim/irbrc .irbrc
+ln -s .vim/pryrc .pryrc

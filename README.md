@@ -55,8 +55,9 @@ You can add the optional stuff as follows:
     cd "%UserProfile%\vimfiles"
     bundle update
     cd ..
-    del _irbrc
+    del _pryrc
     mklink _irbrc vimfiles\irbrc
+    mklink _pryrc vimfiles\pryrc
 
 Updating
 --------
