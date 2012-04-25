@@ -42,7 +42,7 @@ set wildmenu                   " Turn on wild menu
 
 " Use par for paragraph formatting
 if executable("par")
-  set formatprg=par\ 100gqs0
+  set formatprg=par\ 80gqs0
 endif
 
 " Allow jj to be used to escape from insert mode  
@@ -80,7 +80,7 @@ set mat=2                    " How many tenths of a second to blink
 set linebreak                " Break on word barriers
 set showbreak=>>>            " Line break shown as >>>
 
-set textwidth=0              " No maximum width of text for insertion
+set textwidth=100            " No maximum width of text for insertion
 set wrapmargin=0             " Turn off automatic insertion of newlines
 
 set nojoinspaces             " Don't add two spaces between joined sentences
@@ -156,7 +156,10 @@ if has("multi_byte")
   setglobal fileencoding=utf-8
   set fileencodings=utf-8,utf-16,sjis,latin1,ucs-bom
 
-  set ambiwidth=double         " Make non-ASCII glyphs double-width for CJK
+  " Gvim struggles with ambiguous width. MacVim doesn't.
+  if is_windows
+    set ambiwidth=double       
+  endif
 endif
 
 " Remap ¥ to \ for command line
@@ -225,7 +228,7 @@ vnoremap <leader>sj :call OpenKonjac("en", "ja", 1, 1, 1)<CR>
 
 " Translate a line
 nnoremap <leader>E :call OpenKonjac("ja", "en", 0, 0, 1)<CR>
-nnoremap <leader>E :call OpenKonjac("en", "ja", 0, 0, 1)<CR>
+nnoremap <leader>J :call OpenKonjac("en", "ja", 0, 0, 1)<CR>
 
 " Translate word or phrase for entire document
 nnoremap <leader>e :call OpenKonjac("ja", "en", 0, 1, 0)<CR>
