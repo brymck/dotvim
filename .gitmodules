@@ -71,7 +71,7 @@
 	ignored = untracked
 [submodule "bundle/rdoc"]
 	path = bundle/rdoc
-	url = git://github.com/depuracao/vim-rdoc.git.git
+	url = git://github.com/depuracao/vim-rdoc.git
 [submodule "bundle/ruby-refactoring"]
 	path = bundle/ruby-refactoring
 	url = git://github.com/ecomba/vim-ruby-refactoring.git

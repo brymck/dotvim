@@ -40,13 +40,28 @@ set timeoutlen=500             " Wait 0.5 s for a key sequence to complete
 set wildmode=longest:full      " Show all matches for tab-completing file names
 set wildmenu                   " Turn on wild menu
 
+" Allow jj to be used to escape from insert mode  
+inoremap jj <Esc>
+
+"------------------------------------------------------------------------------
+" General
+"------------------------------------------------------------------------------
 " Use par for paragraph formatting
 if executable("par")
   set formatprg=par\ 80gqs0
 endif
 
-" Allow jj to be used to escape from insert mode  
-inoremap jj <Esc>
+" Navigate by display lines
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
 
 "------------------------------------------------------------------------------
 " Leader commands
