@@ -1,99 +1,99 @@
 [submodule "pathogen"]
 	path = pathogen
-	url = git://github.com/tpope/vim-pathogen.git
+	url = http://github.com/tpope/vim-pathogen.git
 [submodule "bundle/applescript"]
 	path = bundle/applescript
-	url = git://github.com/vim-scripts/applescript.vim.git
+	url = http://github.com/vim-scripts/applescript.vim.git
 [submodule "bundle/clojure"]
 	path = bundle/clojure
-	url = git://github.com/vim-scripts/VimClojure.git
+	url = http://github.com/vim-scripts/VimClojure.git
 	ignored = untracked
 [submodule "bundle/coffee_script"]
 	path = bundle/coffee_script
-	url = git://github.com/kchmck/vim-coffee-script.git
+	url = http://github.com/kchmck/vim-coffee-script.git
 [submodule "bundle/color_sampler_pack"]
 	path = bundle/color_sampler_pack
-	url = git://github.com/vim-scripts/Color-Sampler-Pack.git
+	url = http://github.com/vim-scripts/Color-Sampler-Pack.git
 [submodule "bundle/conque"]
 	path = bundle/conque
-	url = git://github.com/rson/vim-conque
+	url = http://github.com/rson/vim-conque
 	ignored = untracked
 [submodule "bundle/csapprox"]
 	path = bundle/csapprox
-	url = git://github.com/godlygeek/csapprox.git
+	url = http://github.com/godlygeek/csapprox.git
 [submodule "bundle/endwise"]
 	path = bundle/endwise
-	url = git://github.com/tpope/vim-endwise.git
+	url = http://github.com/tpope/vim-endwise.git
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = http://github.com/tpope/vim-fugitive.git
 [submodule "bundle/github-colorscheme"]
 	path = bundle/github-colorscheme
-	url = git://github.com/xonecas/github-vim-colorscheme
+	url = http://github.com/xonecas/github-vim-colorscheme
 [submodule "bundle/haml"]
 	path = bundle/haml
-	url = git://github.com/tpope/vim-haml.git
+	url = http://github.com/tpope/vim-haml.git
 [submodule "bundle/indent_object"]
 	path = bundle/indent_object
-	url = git://github.com/michaeljsmith/vim-indent-object.git
+	url = http://github.com/michaeljsmith/vim-indent-object.git
 [submodule "bundle/javascript_indent"]
 	path = bundle/javascript_indent
-	url = git://github.com/vim-scripts/JavaScript-Indent.git
+	url = http://github.com/vim-scripts/JavaScript-Indent.git
 [submodule "bundle/konjac_vim"]
 	path = bundle/konjac_vim
-	url = git://github.com/brymck/konjac_vim
+	url = http://github.com/brymck/konjac_vim
 [submodule "bundle/markdown"]
 	path = bundle/markdown
-	url = git://github.com/hallison/vim-markdown.git
+	url = http://github.com/hallison/vim-markdown.git
 [submodule "bundle/nekotako"]
 	path = bundle/nekotako
-	url = git://github.com/brymck/nekotako.git
+	url = http://github.com/brymck/nekotako.git
 [submodule "bundle/nerdcommenter"]
 	path = bundle/nerdcommenter
-	url = git://github.com/scrooloose/nerdcommenter.git
+	url = http://github.com/scrooloose/nerdcommenter.git
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
-	url = git://github.com/scrooloose/nerdtree.git
+	url = http://github.com/scrooloose/nerdtree.git
 [submodule "bundle/notes"]
 	path = bundle/notes
-	url = git://github.com/xolox/vim-notes.git
+	url = http://github.com/xolox/vim-notes.git
 	ignored = untracked
 [submodule "bundle/rails"]
 	path = bundle/rails
-	url = git://github.com/tpope/vim-rails.git
+	url = http://github.com/tpope/vim-rails.git
 [submodule "bundle/snipmate"]
 	path = bundle/snipmate
-	url = git://github.com/msanders/snipmate.vim.git
+	url = http://github.com/msanders/snipmate.vim.git
 	ignored = untracked
 [submodule "bundle/taglist"]
 	path = bundle/taglist
-	url = git://github.com/vim-scripts/taglist.vim.git
+	url = http://github.com/vim-scripts/taglist.vim.git
 	ignored = untracked
 [submodule "bundle/rdoc"]
 	path = bundle/rdoc
-	url = git://github.com/depuracao/vim-rdoc.git
+	url = http://github.com/depuracao/vim-rdoc.git
 [submodule "bundle/ruby-refactoring"]
 	path = bundle/ruby-refactoring
-	url = git://github.com/ecomba/vim-ruby-refactoring.git
+	url = http://github.com/ecomba/vim-ruby-refactoring.git
 [submodule "bundle/scroll_colors"]
 	path = bundle/scroll_colors
-	url = git://github.com/vim-scripts/ScrollColors.git
+	url = http://github.com/vim-scripts/ScrollColors.git
 [submodule "bundle/solarized"]
 	path = bundle/solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
+	url = http://github.com/altercation/vim-colors-solarized.git
 [submodule "bundle/supertab"]
 	path = bundle/supertab
-	url = git://github.com/ervandew/supertab.git
+	url = http://github.com/ervandew/supertab.git
 [submodule "bundle/surround"]
 	path = bundle/surround
-	url = git://github.com/tpope/vim-surround.git
+	url = http://github.com/tpope/vim-surround.git
 [submodule "bundle/unimpaired"]
 	path = bundle/unimpaired
-	url = git://github.com/tpope/vim-unimpaired.git
+	url = http://github.com/tpope/vim-unimpaired.git
 	ignored = untracked
 [submodule "bundle/tabular"]
 	path = bundle/tabular
-	url = git://github.com/godlygeek/tabular.git
+	url = http://github.com/godlygeek/tabular.git
 [submodule "bundle/v1m"]
 	path = bundle/v1m
-	url = git://github.com/brymck/v1m.git
+	url = http://github.com/brymck/v1m.git

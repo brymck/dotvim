@@ -16,8 +16,8 @@ filetype indent on             " Enable indent pluing
 " Get cross-platform runtime and paths
 let is_windows=has("win32")
 if is_windows
-  let vimfiles_path="~/vimfiles/"
-  let vimrc_path="~/_vimrc"
+  let vimfiles_path=$VIM . "/vimfiles/"
+  let vimrc_path=$VIM . "/_vimrc"
   let terminal="cmd"
   let terminal_flag="/c"
 else
@@ -62,6 +62,20 @@ vnoremap <Down> gj
 vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
+
+"------------------------------------------------------------------------------
+" Windows
+"------------------------------------------------------------------------------
+if is_windows
+  " Turn off obnoxious path abbreviation in Gvim
+  set guitablabel=%t
+
+  " Set a font for double-width characters
+  set guifontwide=MS\ Mincho:h10:cANSI
+
+  " Semicolon is pretty useless, and colon requires pressing shift
+  nnoremap ; :
+endif
 
 "------------------------------------------------------------------------------
 " Leader commands
