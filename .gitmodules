@@ -27,6 +27,9 @@
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
 	url = http://github.com/tpope/vim-fugitive.git
+[submodule "bundle/fuzzy_finder"]
+	path = bundle/fuzzy_finder
+	url = http://github.com/vim-scripts/FuzzyFinder
 [submodule "bundle/github-colorscheme"]
 	path = bundle/github-colorscheme
 	url = http://github.com/xonecas/github-vim-colorscheme
@@ -42,6 +45,9 @@
 [submodule "bundle/konjac_vim"]
 	path = bundle/konjac_vim
 	url = http://github.com/brymck/konjac_vim
+[submodule "bundle/l9"]
+	path = bundle/l9
+	url = http://github.com/vim-scripts/L9.git
 [submodule "bundle/markdown"]
 	path = bundle/markdown
 	url = http://github.com/hallison/vim-markdown.git
@@ -97,3 +103,6 @@
 [submodule "bundle/v1m"]
 	path = bundle/v1m
 	url = http://github.com/brymck/v1m.git
+[submodule "bundle/vitality"]
+	path = bundle/vitality
+	url = http://github.com/sjl/vitality.vim.git

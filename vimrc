@@ -63,6 +63,9 @@ vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
+" Fuzzy search through help with FuzzyFinder
+nnoremap <c-h> :FufHelp<CR>
+
 "------------------------------------------------------------------------------
 " Windows
 "------------------------------------------------------------------------------
