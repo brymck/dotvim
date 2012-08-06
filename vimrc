@@ -46,11 +46,6 @@ inoremap jj <Esc>
 "------------------------------------------------------------------------------
 " General
 "------------------------------------------------------------------------------
-" Use par for paragraph formatting
-if executable("par")
-  set formatprg=par\ 80gqs0
-endif
-
 " Navigate by display lines
 nnoremap j gj
 nnoremap k gk
@@ -112,7 +107,7 @@ set mat=2                    " How many tenths of a second to blink
 set linebreak                " Break on word barriers
 set showbreak=>>>            " Line break shown as >>>
 
-set textwidth=100            " No maximum width of text for insertion
+set textwidth=80             " No maximum width of text for insertion
 set wrapmargin=0             " Turn off automatic insertion of newlines
 
 set nojoinspaces             " Don't add two spaces between joined sentences
@@ -204,7 +199,7 @@ set noimd                      " Retain input method editor memory for modes
 "------------------------------------------------------------------------------
 syntax enable                  " Enable syntax highlighting
 set t_Co=256                   " Default terminal colors to 256
-colorscheme candycode          " Use candycode scheme by default
+colorscheme sjl_molokai        " Use candycode scheme by default
 
 " Quick toggle between light and dark color schemes
 nnoremap <leader>d :colorscheme candycode<CR>
@@ -373,6 +368,16 @@ let g:ConqueTerm_PromptRegex = '\v^(\S+\$|\>|\S+ [0-9.p]+ \d+(\*| \>)|\s+\d\.\.)
 let g:ConqueTerm_StartMessages = 0
 
 "------------------------------------------------------------------------------
+" Rainbow parentheses
+"------------------------------------------------------------------------------
+" Always on
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+au Syntax * RainbowParenthesesLoadChevrons
+
+"------------------------------------------------------------------------------
 " Miscellaneous
 "------------------------------------------------------------------------------
 " Fix weird mapping for applescript
@@ -414,3 +419,6 @@ else
     source $HOME/.vimrc_custom
   endif
 endif
+
+" Assign parameters from Ruby function to instance variables
+inoremap <C-S-P> <Esc>k$yi(jp:s/\v[a-z_]+/\@&/g<CR>:set nohlsearch<CR>A = <Esc>p

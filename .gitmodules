@@ -67,20 +67,18 @@
 [submodule "bundle/rails"]
 	path = bundle/rails
 	url = http://github.com/tpope/vim-rails.git
-[submodule "bundle/snipmate"]
-	path = bundle/snipmate
-	url = http://github.com/msanders/snipmate.vim.git
-	ignored = untracked
-[submodule "bundle/taglist"]
-	path = bundle/taglist
-	url = http://github.com/vim-scripts/taglist.vim.git
-	ignored = untracked
+[submodule "bundle/rainbow_parentheses"]
+	path = bundle/rainbow_parentheses
+	url = http://github.com/vim-scripts/rainbow_parentheses.vim
 [submodule "bundle/rdoc"]
 	path = bundle/rdoc
 	url = http://github.com/depuracao/vim-rdoc.git
 [submodule "bundle/ruby-refactoring"]
 	path = bundle/ruby-refactoring
 	url = http://github.com/ecomba/vim-ruby-refactoring.git
+[submodule "bundle/scala"]
+	path = bundle/scala
+	url = http://github.com/vim-scripts/scala.vim.git
 [submodule "bundle/scroll_colors"]
 	path = bundle/scroll_colors
 	url = http://github.com/vim-scripts/ScrollColors.git
@@ -93,6 +91,10 @@
 [submodule "bundle/surround"]
 	path = bundle/surround
 	url = http://github.com/tpope/vim-surround.git
+[submodule "bundle/taglist"]
+	path = bundle/taglist
+	url = http://github.com/vim-scripts/taglist.vim.git
+	ignored = untracked
 [submodule "bundle/unimpaired"]
 	path = bundle/unimpaired
 	url = http://github.com/tpope/vim-unimpaired.git
@@ -100,6 +102,9 @@
 [submodule "bundle/tabular"]
 	path = bundle/tabular
 	url = http://github.com/godlygeek/tabular.git
+[submodule "bundle/ultisnips"]
+	path = bundle/ultisnips
+	url = http://github.com/vim-scripts/UltiSnips
 [submodule "bundle/v1m"]
 	path = bundle/v1m
 	url = http://github.com/brymck/v1m.git
