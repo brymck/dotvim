@@ -30,8 +30,11 @@ GEM
       trollop
     method_source (0.7.1)
     mime-types (1.18)
-    nokogiri (1.5.2)
-    nokogiri (1.5.2-x86-mingw32)
+    mini_portile2 (2.4.0)
+    nokogiri (1.10.4)
+      mini_portile2 (~> 2.4.0)
+    nokogiri (1.10.4-x86-mingw32)
+      mini_portile2 (~> 2.4.0)
     pry (0.9.8.4)
       coderay (~> 1.0.5)
       method_source (~> 0.7.1)
