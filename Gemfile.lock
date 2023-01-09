@@ -1,13 +1,17 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
     amatch (0.2.10)
       tins (~> 0.3)
     binding_of_caller (0.6.7)
     coderay (1.0.5)
     diff-lcs (1.1.3)
     diffy (2.0.6)
-    git (1.2.5)
+    git (1.13.0)
+      addressable (~> 2.8)
+      rchardet (~> 1.8)
     grit (2.4.1)
       diff-lcs (~> 1.1)
       mime-types (~> 1.15)
@@ -56,7 +60,9 @@ GEM
     pry-stack_explorer (0.4.1)
       binding_of_caller (~> 0.6.2)
       pry (~> 0.9.8.2)
+    public_suffix (5.0.1)
     rb-appscript (0.6.1)
+    rchardet (1.8.0)
     rdoc (3.12)
       json (~> 1.4)
     rspec (2.9.0)
